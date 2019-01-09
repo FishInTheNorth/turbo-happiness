@@ -15,7 +15,7 @@ public class adminDao {
         adminOperation adminOperation = new adminOperation();  //获取管理员表的操作
         HashMap<String,Object> map = new HashMap<>();
 
-        map = adminOperation.select(id,"");
+        map = adminOperation.select(id,"");  //
 
         ResultSet rs = (ResultSet)map.get("rs");
         rs.next();
