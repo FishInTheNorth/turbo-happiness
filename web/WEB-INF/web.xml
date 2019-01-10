@@ -26,6 +26,30 @@
         <url-pattern>/ProvinceCityServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>teacherPasswordServlet</servlet-name>
+        <servlet-class>servlet.teacherPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherPasswordServlet</servlet-name>
+        <url-pattern>/teacherPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherEditServlet</servlet-name>
+        <servlet-class>servlet.teacherEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherEditServlet</servlet-name>
+        <url-pattern>/teacherEditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherInfoServlet</servlet-name>
+        <servlet-class>servlet.teacherInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherInfoServlet</servlet-name>
+        <url-pattern>/teacherInfoServlet</url-pattern>
+    </servlet-mapping>
+
         <servlet-name>AdminInfo</servlet-name>
         <servlet-class>servlet.adminInfoServlet</servlet-class>
     </servlet>

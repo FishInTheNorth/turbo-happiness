@@ -140,7 +140,7 @@
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
                     <span>修改个人信息</span>
                 </div>
-                <form action="#" method="post">
+                <form action="teacherEditServlet" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper1">
