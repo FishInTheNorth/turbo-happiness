@@ -65,7 +65,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_index.jsp">
+                        <a class="mdc-drawer-link" href="teacherInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询

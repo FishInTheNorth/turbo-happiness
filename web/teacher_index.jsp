@@ -45,7 +45,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_index.jsp">
+                        <a class="mdc-drawer-link" href="teacherInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -134,13 +134,13 @@
             <div style="background:url(images/bg.png) ;background-size:120% 100%;-moz-background-size:100% 100%;
 margin: 30px 30px 15px 30px;height: 400px">
                 <ul class="mdc-list-group" style="float: left;margin: 30px 0px 30px 80px">
-                    <li class="mdc-list-item"><label id="UserTypeNoName">工号：</label><span id="Account">16201234</span>
+                    <li class="mdc-list-item"><label id="UserTypeNoName">工号：</label><span id="Account">${bean.getTeacherId()}</span>
                     </li>
-                    <li class="mdc-list-item"><label>姓名：</label><span>张三</span></li>
-                    <li class="mdc-list-item"><label>性别：</label><span>男</span></li>
-                    <li class="mdc-list-item"><label>专业：</label><span>软件工程</span></li>
-                    <li class="mdc-list-item"><label>QQ：</label><span>1338765345</span></li>
-                    <li class="mdc-list-item"><label>联系电话：</label><span>13387653435</span></li>
+                    <li class="mdc-list-item"><label>姓名：</label><span>${bean.getTeacherName()}</span></li>
+                    <li class="mdc-list-item"><label>性别：</label><span>${bean.getSex1()==1?'男':'女'}</span></li>
+                    <li class="mdc-list-item"><label>专业：</label><span>${bean.getMajor1()}</span></li>
+                    <li class="mdc-list-item"><label>QQ：</label><span>${bean.getTeacherQq()}</span></li>
+                    <li class="mdc-list-item"><label>联系电话：</label><span>${bean.getTeacherPhone()}</span></li>
                 </ul>
                 <div style="float: right;margin: 30px 120px 30px 80px"><img src="images/ima.png" width="95.6px" height="113.9px">
                     <br>

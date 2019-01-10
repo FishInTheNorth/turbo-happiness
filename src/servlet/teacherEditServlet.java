@@ -39,7 +39,7 @@ public class teacherEditServlet extends HttpServlet {
         teacherBean.setTeacherName(teacherName);
         teacherBean.setMajor1(major);
         teacherBean.setTeacherPhone(teacherPhone);
-        teacherBean.setTeaherQq(qq);
+        teacherBean.setTeacherQq(qq);
         teacherBean.setSex1(sex1);
         int i = -1;
         try {

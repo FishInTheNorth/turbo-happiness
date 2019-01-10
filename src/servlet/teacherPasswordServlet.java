@@ -1,6 +1,6 @@
 package servlet;
 
-import Dao.studentDao;
+import Dao.teacherDao;
 import Dao.teacherDao;
 
 import javax.servlet.ServletException;
@@ -39,12 +39,12 @@ public class teacherPasswordServlet extends HttpServlet {
         if (i == -1) {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"原密码不正确！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
+            out.println("window.location.href='teacher_changePassword.jsp'");
             out.println("</script>");
         }else if (j == -1) {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"两次密码不一致！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
+            out.println("window.location.href='teacher_changePassword.jsp'");
             out.println("</script>");
         }else {
             try {
@@ -55,12 +55,12 @@ public class teacherPasswordServlet extends HttpServlet {
             if (k == -1) {
                 out.println("<script type='text/javascript'>");
                 out.println("window.alert(\"数据修改失败！\");");
-                out.println("window.location.href='student_changePassword.jsp'");
+                out.println("window.location.href='teacher_changePassword.jsp'");
                 out.println("</script>");
             } else {
                 out.println("<script type='text/javascript'>");
                 out.println("window.alert(\"数据修改成功！\");");
-                out.println("window.location.href='student_changePassword.jsp'");
+                out.println("window.location.href='teacher_changePassword.jsp'");
                 out.println("</script>");
             }
         }

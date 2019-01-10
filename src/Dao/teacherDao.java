@@ -1,11 +1,14 @@
 package Dao;
 import bean.teacherBean;
+import tableOperation.teacherOperation;
 import util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+
 public class teacherDao {
     public int Inquire(String userId, String oldPassword) throws SQLException {
 
@@ -57,10 +60,31 @@ public class teacherDao {
         pstmt.setString(1, teacherBean.getTeacherName());
         pstmt.setString(2, teacherBean.getMajor1());
         pstmt.setString(3, teacherBean.getTeacherPhone());
-        pstmt.setString(4, teacherBean.getTeaherQq());
+        pstmt.setString(4, teacherBean.getTeacherQq());
         pstmt.setInt(5, teacherBean.getSex1());
         pstmt.setString(6, teacherBean.getTeacherId());
         int rs = pstmt.executeUpdate();
         return rs;
+    }
+
+    public teacherBean teacherInfo(String userName) throws SQLException {
+        teacherBean bean = new teacherBean();
+        teacherOperation teacherOperation = new teacherOperation();  //获取管理员表的操作
+        HashMap<String,Object> map = new HashMap<>();
+
+        map = teacherOperation.select(userName,"","","");  //
+
+        ResultSet rs = (ResultSet)map.get("rs");
+        rs.next();
+        bean.setTeacherId(userName);
+        bean.setTeacherName(rs.getString("teacher_name"));
+        bean.setSex1(rs.getInt("sex"));
+        bean.setTeacherPhone(rs.getString("teacher_phone"));
+        bean.setTeacherQq(rs.getString("teacher_qq"));
+        bean.setMajor1(rs.getString("major"));
+        rs.close();
+        DBUtil.freeConnection((Connection)map.get("conn"));
+        return bean;
+
     }
 }

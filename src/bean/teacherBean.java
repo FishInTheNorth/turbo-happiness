@@ -6,7 +6,7 @@ public class teacherBean {
     private String major; //教师专业
     private int sex; //教师性别
     private String teacherPhone; //教师手机号
-    private String teaherQq; //教师QQ
+    private String teacherQq; //教师QQ
     private String password; //教师密码
     private int isUse; //教师是否可用
 
@@ -50,12 +50,12 @@ public class teacherBean {
         this.teacherPhone = teacherPhone;
     }
 
-    public String getTeaherQq() {
-        return teaherQq;
+    public String getTeacherQq() {
+        return teacherQq;
     }
 
-    public void setTeaherQq(String teaherQq) {
-        this.teaherQq = teaherQq;
+    public void setTeacherQq(String teacherQq) {
+        this.teacherQq = teacherQq;
     }
 
     public String getPassword() {
