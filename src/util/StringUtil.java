@@ -16,16 +16,12 @@ public class StringUtil {
 				return str;
 			}
 		}
-	// 将字符串转换为中文utf-8格式
-	public static String toUTF(String str) {
-		if 	(str != null && !"".equals(str)) {
-			try {
-				return new String(str.getBytes("utf-8"), "utf-8");
-			} catch (UnsupportedEncodingException ex) {
-				return str;
+//判断字符串是否为空
+	public static boolean isNull(String str){
+			if (str!=null && !str.equals("")){
+				return true;
 			}
-		} else {
-			return str;
-		}
+			else
+				return  false;
 	}
 }

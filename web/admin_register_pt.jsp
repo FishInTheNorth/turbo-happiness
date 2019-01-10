@@ -242,7 +242,7 @@
                             <div id="demo-tf-box-leading-wrapper4">
                                 <div id="tf-box-leading-example4" class="mdc-text-field mdc-text-field--box w-100">
                                     <input type="date" id="tf-box-leading4" class="mdc-text-field__input"
-                                           name="schoolYear">
+                                           name="shixunEndTime">
                                     <label for="tf-box-leading4" class="mdc-text-field__label">实训结束时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
