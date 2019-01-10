@@ -42,6 +42,14 @@
         <url-pattern>/teacherEdit</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>teacherEditDoServlet</servlet-name>
+        <servlet-class>servlet.teacherEditDoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherEditDoServlet</servlet-name>
+        <url-pattern>/teacherEditDo</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>teacherInfoServlet</servlet-name>
         <servlet-class>servlet.teacherInfoServlet</servlet-class>
     </servlet>

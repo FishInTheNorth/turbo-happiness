@@ -16,54 +16,24 @@ import java.sql.SQLException;
 @WebServlet(name = "teacherEditServlet")
 public class teacherEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("GB2312");
-
-        String teacherName = request.getParameter("teacherName");
-        String major = request.getParameter("major");
-        String teacherPhone = request.getParameter("teacherPhone");
-        String qq = request.getParameter("qq");
-        String sex = request.getParameter("sex");
-        int sex1 = 0;
-        if(sex.equals('女')){
-            sex1 = 0;
-        }else{
-            sex1 = 1;
-        }
-        HttpSession user = request.getSession();
-        String userId = (String) user.getAttribute("id");
-        PrintWriter out = response.getWriter();
-
-        teacherDao teacherDao = new teacherDao();
-        teacherBean teacherBean = new teacherBean();
-        teacherBean.setTeacherId(userId);
-        teacherBean.setTeacherName(teacherName);
-        teacherBean.setMajor1(major);
-        teacherBean.setTeacherPhone(teacherPhone);
-        teacherBean.setTeacherQq(qq);
-        teacherBean.setSex1(sex1);
-        int i = -1;
+        String userName = (String) request.getSession().getAttribute("id"); //从session获取id
+        teacherDao dao = new teacherDao();
+        teacherBean bean;
+        bean = null;
         try {
-            i = teacherDao.Edit(teacherBean);
+            bean = dao.teacherInfo(userName); //获取bean
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        // 将bean作为参数传到teacher_index.jsp页面
+        request.setAttribute("bean", bean);
 
-        if (i == -1) {
-            out.println("<script type='text/javascript'>");
-            out.println("window.alert(\"信息修改失败！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
-            out.println("</script>");
-        } else {
-            out.println("<script type='text/javascript'>");
-            out.println("window.alert(\"信息修改成功！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
-            out.println("</script>");
-        }
+        // 带参数跳转到teacher_index.jsp
+        request.getRequestDispatcher("teacher_edit.jsp").forward(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }
