@@ -49,7 +49,7 @@
         <servlet-name>teacherInfoServlet</servlet-name>
         <url-pattern>/teacherInfoServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
         <servlet-name>AdminInfo</servlet-name>
         <servlet-class>servlet.adminInfoServlet</servlet-class>
     </servlet>
