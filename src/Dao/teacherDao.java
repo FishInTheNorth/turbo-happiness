@@ -1,6 +1,8 @@
 package Dao;
+import bean.studentTrainBean;
 import bean.teacherBean;
 import bean.teacherPtListBean;
+import tableOperation.stduentTrainOperation;
 import tableOperation.teacherOperation;
 import tableOperation.threeOperation;
 import util.DBUtil;
@@ -139,5 +141,26 @@ public class teacherDao {
         tea.setEndTime(null);
         list.add(tea);
         return list;
+    }
+
+    public List<studentTrainBean> teacherPtAllStudent(String trainId) throws SQLException {
+        if(trainId == null || "".equals(trainId))
+            return null;
+        studentTrainBean bean;
+        List<studentTrainBean> list = new ArrayList<>();
+        stduentTrainOperation st = new stduentTrainOperation();
+        HashMap map = st.select(Integer.parseInt(trainId),"");
+        ResultSet rs = (ResultSet) map.get("rs");
+        while(rs.next()){
+            bean = new studentTrainBean();
+            bean.setTrainId(rs.getInt("trian_id"));
+            bean.setStudentId(rs.getString("student_Id"));
+            bean.setTrainId(rs.getInt("trian_id"));
+            bean.setTrainId(rs.getInt("trian_id"));
+            bean.setTrainId(rs.getInt("trian_id"));
+            bean.setTrainId(rs.getInt("trian_id"));
+            list.add(bean);
+            if(rs.next()) rs.close();
+        }
     }
 }
