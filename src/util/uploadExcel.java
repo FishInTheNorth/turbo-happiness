@@ -16,7 +16,7 @@ public class uploadExcel {
         InputStream is = new FileInputStream(path);
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
         teacherBean user = null;
-        List<teacherBean> list = new ArrayList<teacherBean>();
+        List<teacherBean> list = new ArrayList<>();
         // 循环工作表Sheet
         for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
             HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);
@@ -29,12 +29,9 @@ public class uploadExcel {
                 if (hssfRow != null) {
                     user = new teacherBean();
                     HSSFCell username = hssfRow.getCell(0);
-                    HSSFCell password = hssfRow.getCell(1);
-                    HSSFCell realname = hssfRow.getCell(2);
-                    HSSFCell score = hssfRow.getCell(3);
-                    user.setUsername(getValue(username));
-                    user.setPassword(getValue(password));
-                    user.setRealname(getValue(realname));
+                    HSSFCell realname = hssfRow.getCell(1);
+                    user.setTeacherId(getValue(username));
+                    user.setTeacherName(getValue(realname));
                     list.add(user);
                 }
             }
@@ -56,3 +53,4 @@ public class uploadExcel {
         }
 
     }
+}
