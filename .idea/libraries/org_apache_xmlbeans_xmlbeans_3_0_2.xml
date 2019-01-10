@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="org.apache.xmlbeans:xmlbeans:3.0.2" type="repository">
+    <properties maven-id="org.apache.xmlbeans:xmlbeans:3.0.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/xmlbeans/xmlbeans/3.0.2/xmlbeans-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/xmlbeans/xmlbeans/3.0.2/xmlbeans-3.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/xmlbeans/xmlbeans/3.0.2/xmlbeans-3.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
