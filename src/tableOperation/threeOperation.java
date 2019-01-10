@@ -34,28 +34,87 @@ public class threeOperation {
         return result;
     }
 
-    public HashMap select(String teacherId, int trainId, Date beginTime, Date endTime) throws SQLException {
+    public HashMap selectShixi(String teacherId, int trainId, Date beginTime, Date endTime) throws SQLException {
         //查询信息
         Connection conn = DBUtil.getConnection();
         ResultSet set = null;
         HashMap<String, Object> map = new HashMap<>();
         if (conn != null) {
             Statement stmt = conn.createStatement();
-            String sql = "select * from " + TABLE_NAME + " where is_use=1";
+            String sql = "select * from  shixi where is_use = 1";
             if (teacherId != null && !"".equals(teacherId)) {
                 sql += " and teacherId ='" + teacherId + "'";
             }
             if (trainId != 0) {
-                sql += " and train_id =" + trainId;
+                sql += " and trian_id =" + trainId;
             }
             if (beginTime != null && !"".equals(DateUtil.GetStr(beginTime))) {
-                sql += " and begin_time='" + beginTime + "'";
+                sql += " and begin_time >'" + beginTime + "'";
             }
             if (endTime != null && !"".equals(DateUtil.GetStr(endTime))) {
-                sql += " and end_time='" + endTime + "'";
+                sql += " and end_time < '" + endTime + "'";
             }
-            set = stmt.executeQuery(sql);
             System.out.println(sql);
+            set = stmt.executeQuery(sql);
+
+            System.out.println();
+        }
+        map.put("rs", set);
+        map.put("conn", conn);
+        return map;
+    }
+    public HashMap selectShijian(String teacherId, int trainId, Date beginTime, Date endTime) throws SQLException {
+        //查询信息
+        Connection conn = DBUtil.getConnection();
+        ResultSet set = null;
+        HashMap<String, Object> map = new HashMap<>();
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "select * from  shijian where is_use = 1";
+            if (teacherId != null && !"".equals(teacherId)) {
+                sql += " and teacherId ='" + teacherId + "'";
+            }
+            if (trainId != 0) {
+                sql += " and trian_id =" + trainId;
+            }
+            if (beginTime != null && !"".equals(DateUtil.GetStr(beginTime))) {
+                sql += " and begin_time > '" + beginTime + "'";
+            }
+            if (endTime != null && !"".equals(DateUtil.GetStr(endTime))) {
+                sql += " and end_time < '" + endTime + "'";
+            }
+            System.out.println(sql);
+            set = stmt.executeQuery(sql);
+
+            System.out.println();
+        }
+        map.put("rs", set);
+        map.put("conn", conn);
+        return map;
+    }
+    public HashMap selectShixun(String teacherId, int trainId, Date beginTime, Date endTime) throws SQLException {
+        //查询信息
+        Connection conn = DBUtil.getConnection();
+        ResultSet set = null;
+        HashMap<String, Object> map = new HashMap<>();
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "select * from  shixun where is_use = 1";
+            if (teacherId != null && !"".equals(teacherId)) {
+                sql += " and teacherId ='" + teacherId + "'";
+            }
+            if (trainId != 0) {
+                sql += " and trian_id =" + trainId;
+            }
+            if (beginTime != null && !"".equals(DateUtil.GetStr(beginTime))) {
+                sql += " and begin_time >'" + beginTime + "'";
+            }
+            if (endTime != null && !"".equals(DateUtil.GetStr(endTime))) {
+                sql += " and end_time < '" + endTime + "'";
+            }
+            System.out.println(sql);
+            set = stmt.executeQuery(sql);
+
             System.out.println();
         }
         map.put("rs", set);
@@ -69,7 +128,7 @@ public class threeOperation {
         int result = 0;
         if (conn != null) {
             Statement stmt = conn.createStatement();
-            String sql = "UPDATE " + TABLE_NAME + " set is_use = 0 where train_id = '" + trainId + "'";
+            String sql = "UPDATE " + TABLE_NAME + " set is_use = 0 where trian_id = '" + trainId + "'";
             result = stmt.executeUpdate(sql);
             System.out.println(sql);
             System.out.println();

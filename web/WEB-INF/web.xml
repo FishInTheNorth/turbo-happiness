@@ -58,6 +58,14 @@
         <url-pattern>/teacherInfo</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>teacherPtListServlet</servlet-name>
+        <servlet-class>servlet.teacherPtListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherPtListServlet</servlet-name>
+        <url-pattern>/teacherPtList</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminInfo</servlet-name>
         <servlet-class>servlet.adminInfoServlet</servlet-class>
     </servlet>

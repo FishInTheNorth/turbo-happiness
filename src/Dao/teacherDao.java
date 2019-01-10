@@ -1,13 +1,14 @@
 package Dao;
 import bean.teacherBean;
+import bean.teacherPtListBean;
 import tableOperation.teacherOperation;
+import tableOperation.threeOperation;
 import util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class teacherDao {
     public int Inquire(String userId, String oldPassword) throws SQLException {
@@ -86,5 +87,57 @@ public class teacherDao {
         DBUtil.freeConnection((Connection)map.get("conn"));
         return bean;
 
+    }
+
+    public List<teacherPtListBean> teacherPtList(String teacherId, String trianNumber, Date beginTime, Date endTime) throws SQLException {
+        List<teacherPtListBean> list = new ArrayList<>();
+        teacherPtListBean tea;
+        threeOperation tho1 = new threeOperation("");
+        HashMap map;
+        int trainId = 0;
+        if(trianNumber != null && "".equals(trianNumber) == false){
+            trainId = Integer.parseInt(trianNumber);
+        }
+
+        map = tho1.selectShixi(teacherId,trainId,beginTime,endTime);
+        ResultSet rs = (ResultSet)map.get("rs");
+        while(rs.next()){
+            tea = new teacherPtListBean();
+            tea.setTrainId(rs.getString("trian_id"));
+            tea.setStage("ÊµÏ°½×¶Î");
+            tea.setBeginTime(rs.getDate("begin_time"));
+            tea.setEndTime(rs.getDate("end_time"));
+            list.add(tea);
+            if(rs.next()) rs.close();
+        }
+        map = tho1.selectShixun(teacherId,trainId,beginTime,endTime);
+        rs = (ResultSet)map.get("rs");
+        while(rs.next()){
+            tea = new teacherPtListBean();
+            tea.setTrainId(rs.getString("trian_id"));
+            tea.setStage("ÊµÑµ½×¶Î");
+            tea.setBeginTime(rs.getDate("begin_time"));
+            tea.setEndTime(rs.getDate("end_time"));
+            list.add(tea);
+            if(rs.next()) rs.close();
+        }
+        map = tho1.selectShijian(teacherId,trainId,beginTime,endTime);
+        rs = (ResultSet)map.get("rs");
+        while(rs.next()){
+            tea = new teacherPtListBean();
+            tea.setTrainId(rs.getString("trian_id"));
+            tea.setStage("Êµ¼ù½×¶Î");
+            tea.setBeginTime(rs.getDate("begin_time"));
+            tea.setEndTime(rs.getDate("end_time"));
+            list.add(tea);
+            if(rs.next()) rs.close();
+        }
+        tea = new teacherPtListBean();
+        tea.setTrainId("16666");
+        tea.setStage("Êµ¼ù½×¶Î");
+        tea.setBeginTime(null);
+        tea.setEndTime(null);
+        list.add(tea);
+        return list;
     }
 }

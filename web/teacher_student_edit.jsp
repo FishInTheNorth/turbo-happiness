@@ -89,7 +89,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_pt_list.jsp">
+                        <a class="mdc-drawer-link" href="teacherPtList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             查询学生信息

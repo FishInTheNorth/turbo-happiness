@@ -61,7 +61,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_changePassword.jsp">
+                        <a class="mdc-drawer-link" href="teacherPtList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">event</i>
                             修改密码
