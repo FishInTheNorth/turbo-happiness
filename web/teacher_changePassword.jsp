@@ -140,7 +140,7 @@
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
                     <span>修改密码</span>
                 </div>
-                <form action="teacherPasswordServlet" method="post">
+                <form action="teacherPassword" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper">

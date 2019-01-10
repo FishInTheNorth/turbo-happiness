@@ -31,7 +31,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>teacherPasswordServlet</servlet-name>
-        <url-pattern>/teacherPasswordServlet</url-pattern>
+        <url-pattern>/teacherPassword</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>teacherEditServlet</servlet-name>
@@ -39,7 +39,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>teacherEditServlet</servlet-name>
-        <url-pattern>/teacherEditServlet</url-pattern>
+        <url-pattern>/teacherEdit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>teacherInfoServlet</servlet-name>
@@ -47,7 +47,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>teacherInfoServlet</servlet-name>
-        <url-pattern>/teacherInfoServlet</url-pattern>
+        <url-pattern>/teacherInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminInfo</servlet-name>
