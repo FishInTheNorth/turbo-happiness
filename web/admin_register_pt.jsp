@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="css/style1.css">
     <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
+
+<body>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
     function showTime() {
         nowtime = new Date();
@@ -28,10 +31,23 @@
         date = nowtime.getDate();
         document.getElementById("mytime").innerText = year + "年" + month + "月" + date + " " + nowtime.toLocaleTimeString();
     }
-
     setInterval("showTime()", 1000);
+    $(document).ready(function () {
+        $("#shixi").click(function () {
+            $("#shixibut").trigger("click");
+        });
+        $("#shixun").click(function () {
+            $("#shixunbut").trigger("click");
+        });
+        $("#shijian").click(function () {
+            $("#shijianbut").trigger("click");
+        });
+        $("#xueshen").click(function () {
+            $("#xueshenbut").trigger("click");
+        });
+    });
+
 </script>
-<body>
 <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -142,171 +158,144 @@
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
                     <span>注册实训信息</span>
                 </div>
-                <form action="" method="post" id="addTrain" enctype="multipart/form-data">
+                <form action="/adminAddTrain" method="post" id="addTrain" enctype="multipart/form-data">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper">
-                                <div id="tf-box-example" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box"
-                                           class="mdc-text-field__input" name="major"
-                                           aria-controls="name-validation-message" placeholder="如：2018-1019学年">
-                                    <label for="tf-box" class="mdc-text-field__label">学年</label>
+                            <div id="demo-tf-box-leading-wrapper">
+                                <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="text" id="tf-box-leading" class="mdc-text-field__input"
+                                           placeholder="如：2018-1019学年"
+                                           name="schoolYear">
+                                    <label for="tf-box-leading" class="mdc-text-field__label">学年</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg">
-                                    学年不能为空
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
-                         style="margin: 30px 240px 0px 240px;">
-                        <div class="template-demo">
-                                <button type="file" class="mdc-button mdc-button--stroked secondary-stroked-button"
-                                        id="shixi">
-                                    导入实习教师信息
-                                </button>
-                                <font color="#999999">选择excel表，内有实习老师工号</font>
-                        </div>
-                    </div>
-                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
-                         style="margin: 30px 240px 0px 240px;">
-                        <div class="template-demo">
-                            <div id="demo-tf-box-wrapper1">
-                                <div id="tf-box-example1" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box1"
-                                           class="mdc-text-field__input" name="shixiBeginTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box1" class="mdc-text-field__label">实习开始时间</label>
-                                    <div class="mdc-text-field__bottom-line"></div>
-                                </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg1">
-                                    实习开始时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper2">
-                                <div id="tf-box-example2" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box2"
-                                           class="mdc-text-field__input" name="shixiEndTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box2" class="mdc-text-field__label">实习结束时间</label>
+                            <input type="file" style="display:none" id="shixibut"
+                                   accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                            <button type="button" class="mdc-button mdc-button--stroked secondary-stroked-button"
+                                    id="shixi">
+                                导入实习教师信息
+                            </button>
+                            <font color="#999999">选择excel表，内有实习老师工号</font>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
+                         style="margin: 30px 240px 0px 240px;">
+                        <div class="template-demo">
+                            <div id="demo-tf-box-leading-wrapper1">
+                                <div id="tf-box-leading-example1" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading1" class="mdc-text-field__input"
+                                           name="shixiBeginTime">
+                                    <label for="tf-box-leading1" class="mdc-text-field__label">实习开始时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg2">
-                                    实习结束时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                                <button type="file" class="mdc-button mdc-button--stroked secondary-stroked-button"
-                                        id="shixun">
-                                    导入实训教师信息
-                                </button>
+                            <div id="demo-tf-box-leading-wrapper2">
+                                <div id="tf-box-leading-example2" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading2" class="mdc-text-field__input"
+                                           name="shixiEndTime">
+                                    <label for="tf-box-leading2" class="mdc-text-field__label">实习结束时间</label>
+                                    <div class="mdc-text-field__bottom-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
+                         style="margin: 30px 240px 0px 240px;">
+                        <div class="template-demo">
+                            <input type="file" style="display:none" id="shixunbut"
+                                   accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                            <button type="button" class="mdc-button mdc-button--stroked secondary-stroked-button"
+                                    id="shixun">
+                                导入实训教师信息
+                            </button>
                             <font color="#999999">选择excel表，内有实训老师工号</font>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper3">
-                                <div id="tf-box-example3" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box3"
-                                           class="mdc-text-field__input" name="shixunBeginTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box3" class="mdc-text-field__label">实训开始时间</label>
+                            <div id="demo-tf-box-leading-wrapper3">
+                                <div id="tf-box-leading-example3" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading3" class="mdc-text-field__input"
+                                           name="shixunBeginTime">
+                                    <label for="tf-box-leading3" class="mdc-text-field__label">实训开始时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg3">
-                                    实训开始时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper4">
-                                <div id="tf-box-example4" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box4"
-                                           class="mdc-text-field__input" name="shixunEndTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box4" class="mdc-text-field__label">实训结束时间</label>
+                            <div id="demo-tf-box-leading-wrapper4">
+                                <div id="tf-box-leading-example4" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading4" class="mdc-text-field__input"
+                                           name="schoolYear">
+                                    <label for="tf-box-leading4" class="mdc-text-field__label">实训结束时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg4">
-                                    实训结束时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                                <button type="file" class="mdc-button mdc-button--stroked secondary-stroked-button"
-                                        id="shijian">
-                                    导入实践教师信息
-                                </button>
+                            <input type="file" style="display:none" id="shijianbut"
+                                   accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                            <button type="button" class="mdc-button mdc-button--stroked secondary-stroked-button"
+                                    id="shijian">
+                                导入实践教师信息
+                            </button>
                             <font color="#999999">选择excel表，内有实践老师工号</font>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper5">
-                                <div id="tf-box-example5" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box5"
-                                           class="mdc-text-field__input" name="shijianBeginTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box5" class="mdc-text-field__label">实践开始时间</label>
+                            <div id="demo-tf-box-leading-wrapper5">
+                                <div id="tf-box-leading-example5" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading5" class="mdc-text-field__input"
+                                           name="shijianBeginTime">
+                                    <label for="tf-box-leading5" class="mdc-text-field__label">实践开始时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg5">
-                                    实践开始时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                            <div id="demo-tf-box-wrapper6">
-                                <div id="tf-box-example6" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="date" id="tf-box6"
-                                           class="mdc-text-field__input" name="shijianEndTime"
-                                           aria-controls="name-validation-message">
-                                    <label for="tf-box6" class="mdc-text-field__label">实践结束时间</label>
+                            <div id="demo-tf-box-leading-wrapper6">
+                                <div id="tf-box-leading-example6" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input type="date" id="tf-box-leading6" class="mdc-text-field__input"
+                                           name="shijianEndTime">
+                                    <label for="tf-box-leading6" class="mdc-text-field__label">实践结束时间</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
-                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
-                                   id="name-validation-msg6">
-                                    实践结束时间不能为空
-                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
-                                <button class="mdc-button mdc-button--stroked secondary-stroked-button" id="xueshen" type="file"
-                                        accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                                    导入实训学生信息
-                                </button>
+                            <input type="file" style="display:none" id="xueshenbut"
+                                   accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                            <button type="button" class="mdc-button mdc-button--stroked secondary-stroked-button"
+                                    id="xueshen">
+                                导入学生信息
+                            </button>
                             <font color="#999999">选择excel表，内有学生学号</font>
                         </div>
                     </div>
@@ -324,7 +313,6 @@
     </div>
 </div>
 <script src="node_modules/material-components-web/dist/material-components-web.min.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/chart.js/dist/Chart.min.js"></script>
 <script src="node_modules/progressbar.js/dist/progressbar.min.js"></script>
 <script src="js/misc.js"></script>
