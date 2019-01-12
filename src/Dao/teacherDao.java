@@ -92,21 +92,21 @@ public class teacherDao {
 
     }
 
-    public List<teacherPtListBean> teacherPtList(String teacherId, String trianNumber, Date beginTime, Date endTime) throws SQLException {
+    public List<teacherPtListBean> teacherPtList(String teacherId, String trainNumber, Date beginTime, Date endTime) throws SQLException {
         List<teacherPtListBean> list = new ArrayList<>();
         teacherPtListBean tea;
         threeOperation tho1 = new threeOperation("");
         HashMap map;
         int trainId = 0;
-        if(trianNumber != null && "".equals(trianNumber) == false){
-            trainId = Integer.parseInt(trianNumber);
+        if(trainNumber != null && "".equals(trainNumber) == false){
+            trainId = Integer.parseInt(trainNumber);
         }
 
         map = tho1.selectShixi(teacherId,trainId,beginTime,endTime);
         ResultSet rs = (ResultSet)map.get("rs");
         while(rs.next()){
             tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("trian_id"));
+            tea.setTrainId(rs.getString("train_id"));
             tea.setStage("实习阶段");
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
@@ -116,7 +116,7 @@ public class teacherDao {
         rs = (ResultSet)map.get("rs");
         while(rs.next()){
             tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("trian_id"));
+            tea.setTrainId(rs.getString("train_id"));
             tea.setStage("实训阶段");
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
@@ -126,17 +126,16 @@ public class teacherDao {
         rs = (ResultSet)map.get("rs");
         while(rs.next()){
             tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("trian_id"));
+            tea.setTrainId(rs.getString("train_id"));
             tea.setStage("实践阶段");
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
             list.add(tea);
-            if(!rs.next()) rs.close();
         }
         return list;
     }
 
-    public List<teacherPtAllStudentBean> teacherPtAllStudent(String trainId) throws SQLException {
+    public List<teacherPtAllStudentBean> teacherPtAllStudent(String trainId) throws SQLException {  //用于教师查询所有学生信息
         if(trainId == null || "".equals(trainId))
             return null;
         teacherPtAllStudentBean bean;
@@ -152,16 +151,34 @@ public class teacherDao {
             map1 = st1.select(rs.getString("student_Id"),"","","");  //在student表中搜索
             rs1 = (ResultSet) map1.get("rs");
             rs1.next();
-            bean.setStudentId(rs1.getString("student_id"));
+            bean.setStudentId(rs1.getString("student_id"));  //从student表获取信息
             bean.setStudentsName(rs1.getString("student_name"));
-            //bean.setMajor(rs1.getString("major"));
-            bean.setProvince(rs.getString("province"));
+            bean.setMajor(rs1.getString("major"));
+            bean.setStudentPhone(rs1.getString("student_phone"));
+            bean.setStudentQq(rs1.getString("student_qq"));
+            bean.setSex(rs1.getInt("sex"));
+
+            bean.setProvince(rs.getString("province"));    //从student_train表获取信息
             bean.setCity(rs.getString("city"));
             bean.setCompany(rs.getString("company"));
             bean.setContactName(rs.getString("contact_name"));
             bean.setContactPhone(rs.getString("contact_phone"));
+            bean.setTrainId(Integer.parseInt(rs.getString("train_id")));
             list.add(bean);
         }
         return list;
+    }
+
+    public int StudentEdit(teacherPtAllStudentBean bean) throws SQLException {  //用于教师修改学生信息
+        Connection conn;
+        conn = DBUtil.getConnection();
+        studentOperation stu = new studentOperation();
+        stduentTrainOperation stutr = new stduentTrainOperation();
+
+        int r1 = stu.update(bean.getStudentId(),bean.getContactName(),bean.getMajor(),bean.getStudentPhone(),bean.getStudentQq(),bean.getSex());
+        int r2 = stutr.addDetails(bean.getStudentId(),bean.getTrainId(),bean.getProvince(),bean.getCity(),bean.getCompany(),bean.getContactName(),bean.getContactPhone());
+        if(r1 == -1 || r2 == -1)
+          return -1;
+        return 1;
     }
 }

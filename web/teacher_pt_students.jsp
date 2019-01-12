@@ -157,16 +157,16 @@
                         <tbody>
                         <c:forEach items="${list }"	var="bean">
                         <tr>
-                            <td class="text-left">${bean.studentId}</td>
-                            <td>${bean.studentsName}</td>
-                            <td>${bean.major}</td>
-                            <td>${bean.province}</td>
-                            <td>${bean.city}</td>
-                            <td>${bean.company}</td>
-                            <td>${bean.contactName}</td>
-                            <td>${bean.contactPhone}</td>
+                            <td class="text-left">${bean.getStudentId()}</td>
+                            <td>${bean.getStudentsName()}</td>
+                            <td>${bean.getMajor()}</td>
+                            <td>${bean.getCompany()}</td>
+                            <td>${bean.getProvince()}</td>
+                            <td>${bean.getCity()}</td>
+                            <td>${bean.getContactName()}</td>
+                            <td>${bean.getContactPhone()}</td>
                             <td>
-                                <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp">
+                                <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp?s1=${bean.getStudentsName()}&s2=${bean.getMajor()}&s3=${bean.getStudentPhone()}&s4=${bean.getStudentQq()}&s5=${bean.getSex()}&s6=${bean.getCompany()}&s7=${bean.getProvince()}&s8=${bean.getContactName()}&s9=${bean.getContactPhone()}&s10=${bean.getStudentId()}&s11=${bean.getTrainId()}">
                                     修改
                                 </a>
                                 <a class="mdc-button mdc-button--stroked secondary-stroked-button" onclick="del(1)">

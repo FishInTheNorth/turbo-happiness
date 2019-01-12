@@ -1,15 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zk182
-  Date: 2018/12/30
-  Time: 16:18
-  To change this template use File | Settings | File Templates.
-  用于学生提交自己的汇报
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <c:if test="${empty sessionScope.userName}">
     <c:redirect url="login.jsp?f=5" />
 </c:if>
@@ -19,6 +11,8 @@
     <title>学生界面</title>
     <link rel="stylesheet" href="css/style1.css">
     <link rel="shortcut icon" href="images/favicon.png"/>
+	<link href="css/bootstrap.file-input.css" rel="stylesheet">
+	<script src="js/bootstrap.file-input.js"></script>
 </head>
 <script type="text/javascript">
     function showTime() {
@@ -41,11 +35,11 @@
             <div class="mdc-persistent-drawer__toolbar-spacer">
                 <strong>学生界面</strong>
             </div>
-            <div class="mdc-list-group">
+             <div class="mdc-list-group">
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_index.jsp">
+                        <a class="mdc-drawer-link" href="studentInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -77,7 +71,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_Submit.jsp">
+                        <a class="mdc-drawer-link" href="studentSubmit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             提交报告
@@ -85,7 +79,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_queryGrade.jsp">
+                        <a class="mdc-drawer-link" href="studentGrade">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             查询成绩
@@ -93,7 +87,7 @@
                     </div>
                     <!--下侧按钮-->
                     <div class="mdc-list-item mdc-drawer-item purchase-link">
-                        <a href="logout.jsp"
+                        <a href="login.jsp"
                            class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link"
                            data-mdc-auto-init="MDCRipple">
                             登出系统
@@ -124,7 +118,7 @@
             </section>
             <!--用户信息及当前时间-->
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <font size="3x" face="KaiTi" style="color: white">欢迎你，${ sessionScope.userName} &nbsp&nbsp&nbsp<span
+                <font size="3x" face="KaiTi" style="color: white">欢迎你，${sessionScope.userName} &nbsp&nbsp&nbsp<span
                         id="mytime"></span></font>
             </section>
         </div>
@@ -134,7 +128,7 @@
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card table-responsive">
                     <div class="table-heading px-2 px-1 border-bottom">
-                        <h1 class="mdc-card__title mdc-card__title--large">报告提交表</h1>
+                        <h1 class="mdc-card__title mdc-card__title--large">报告提交表${message}</h1>
                     </div>
                     <table class="table table-hoverable">
                         <thead>
@@ -144,41 +138,34 @@
                             <th>开始时间</th>
                             <th>结束时间</th>
                             <th>周数</th>
-                            <th>操作</th>
+                            <th>操作 </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>实习阶段</td>
-                            <td>2018-2-2</td>
-                            <td>2018-2-6</td>
-                            <td>第一周</td>
-                            <td>
-                                <a class="mdc-button mdc-button--stroked" href="#">
-                                    查看汇报
-                                </a></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>实习阶段</td>
-                            <td>2018-2-7</td>
-                            <td>2018-2-12</td>
-                            <td>第二周</td>
-                            <td>
-                                <a class="mdc-button mdc-button--stroked" href="#">
-                                    提交汇报
-                                </a></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>实习阶段</td>
-                            <td>2018-2-13</td>
-                            <td>2018-2-18</td>
-                            <td>第三周</td>
-                            <td>
-                                过时未交</td>
-                        </tr>
+                     <c:forEach items="${list}"	var="bean">				
+				<tr class="text-left">
+					<td class="text-left">${bean.trainId}</td>	
+					<td>${bean.stage}</td>
+					<td>${bean.beginTime}</td>
+					<td>${bean.endTime}</td>
+					<td>${bean.week}</td>
+					<td>
+					
+					<c:if test="${data > bean.endTime}">  
+    					<a  class='btn btn-outline-success btn-sm' href = "studentDownlode?s=${bean.stage}&w=${bean.week}">在线阅览</a>
+					</c:if>   
+					<c:if test="${data > bean.beginTime && data < bean.endTime}">  
+    					 <form method="post" action="studentUplodeServlet" enctype="multipart/form-data"> 
+    					 <input type="file" name="file" class="custom-file-input"/>
+    					 <input type="submit"class="custom-file-input" value = "提交报告"/>
+        				  </form>
+					</c:if> 
+					<c:if test="${bean.beginTime > data}">  
+    					<font class="new new-position">时候未到</font>  
+					</c:if> 
+					</td>
+				</tr>
+				</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -193,6 +180,7 @@
 <script src="js/misc.js"></script>
 <script src="js/text_Field.js"></script>
 <script src="js/dashboard.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

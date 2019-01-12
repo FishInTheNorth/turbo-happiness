@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class stduentTrainOperation {
     private final String TABLE_NAME = "student_train";
-    public HashMap select(int trainId, String studentId) throws SQLException{
+    public HashMap select(int trainId, String studentId) throws SQLException{ //no use
         //通过实训号和学生确定学生实训信息
         Connection conn = DBUtil.getConnection();
         ResultSet set = null;
@@ -17,7 +17,7 @@ public class stduentTrainOperation {
             String sql = "select * from " + TABLE_NAME +
                     " where is_use=1 "+ " AND student_Id ='"+ studentId + "'";
             if (trainId != 0){
-                sql +=" AND trian_id="+ trainId;
+                sql +=" AND train_id="+ trainId;
             }
 
             System.out.println(sql);
@@ -95,7 +95,7 @@ public class stduentTrainOperation {
             String sql = "select * from " + TABLE_NAME +
                     " where is_use=1 ";
             if (trainId != 0){
-                sql +=" AND trian_id="+ trainId;
+                sql +=" AND train_id="+ trainId;
             }
 
             System.out.println(sql);
@@ -106,5 +106,25 @@ public class stduentTrainOperation {
         map.put("conn",conn);
         return map;
     }
+    public int selectTrainId() throws SQLException{            //zzzzzzzz
+        //求最后的实训号
+        Connection conn = DBUtil.getConnection();
+        ResultSet set = null;
+        int trainId = 0;
+        if (conn!=null){
+            Statement stmt = conn.createStatement();
+            String sql = "select * from " + TABLE_NAME +
+                    " where is_use=1 ";
+            set = stmt.executeQuery(sql);
+            if (!set.next()) return 0; //若未查到直接退出
+            else {
+                trainId = set.getInt("train_id");
+            }
+            System.out.println(sql);
+            System.out.println(trainId);
+        }
+        return trainId;
+    }
+
 
 }

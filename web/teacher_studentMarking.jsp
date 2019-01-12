@@ -132,9 +132,10 @@
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                <div class="mdc-card table-responsive" style="text-align: center">
-                    这是报告
-                </div>
+                <iframe id="displayPdfIframe" width="100%" height="800"
+                        src="<c:url value="/resources/plugins/pdfjs/web/viewer.html" />?file=<c:url value="${address}"/>">
+                </iframe>
+            </div>
             </div>
             <br>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">

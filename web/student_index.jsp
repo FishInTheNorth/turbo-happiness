@@ -1,20 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zk182
-  Date: 2018/12/30
-  Time: 13:32
-  To change this template use File | Settings | File Templates.
-  用于学生查看个人信息
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <c:if test="${empty sessionScope.userName}">
     <c:redirect url="login.jsp?f=5" />
 </c:if>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>学生界面</title>
     <link rel="stylesheet" href="css/style1.css">
@@ -45,7 +38,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_index.jsp">
+                        <a class="mdc-drawer-link" href="studentInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -77,7 +70,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_Submit.jsp">
+                        <a class="mdc-drawer-link" href="studentSubmit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             提交报告
@@ -85,7 +78,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_queryGrade.jsp">
+                        <a class="mdc-drawer-link" href="studentGrade">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             查询成绩
@@ -93,7 +86,7 @@
                     </div>
                     <!--下侧按钮-->
                     <div class="mdc-list-item mdc-drawer-item purchase-link">
-                        <a href="logout.jsp"
+                        <a href="login.jsp"
                            class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link"
                            data-mdc-auto-init="MDCRipple">
                             登出系统
@@ -124,7 +117,7 @@
             </section>
             <!--用户信息及当前时间-->
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <font size="3x" face="KaiTi" style="color: white">欢迎你，${ sessionScope.userName}&nbsp&nbsp&nbsp<span
+                <font size="3x" face="KaiTi" style="color: white">欢迎你，${sessionScope.userName}&nbsp&nbsp&nbsp<span
                         id="mytime"></span></font>
             </section>
         </div>
@@ -134,13 +127,13 @@
             <div style="background:url(images/bg.png) ;background-size:120% 100%;-moz-background-size:100% 100%;
 margin: 30px 30px 15px 30px;height: 400px">
                 <ul class="mdc-list-group" style="float: left;margin: 30px 0px 30px 80px">
-                    <li class="mdc-list-item"><label id="UserTypeNoName">学号：</label><span id="Account">16201234</span>
+                    <li class="mdc-list-item"><label id="UserTypeNoName">学号：</label><span id="Account">${studentBean.studentId}</span>
                     </li>
-                    <li class="mdc-list-item"><label>姓名：</label><span>张三</span></li>
-                    <li class="mdc-list-item"><label>性别：</label><span>男</span></li>
-                    <li class="mdc-list-item"><label>专业：</label><span>软件工程</span></li>
-                    <li class="mdc-list-item"><label>QQ：</label><span>1338765345</span></li>
-                    <li class="mdc-list-item"><label>联系电话：</label><span>13387653435</span></li>
+                    <li class="mdc-list-item"><label>姓名：</label><span>${studentBean.studentsName}</span></li>
+                    <li class="mdc-list-item"><label>性别：</label><span>${studentBean.getSex1() eq 1?"男":"女"}</span></li>
+                    <li class="mdc-list-item"><label>专业：</label><span>${studentBean.major}</span></li>
+                    <li class="mdc-list-item"><label>QQ：</label><span>${studentBean.studentQq}</span></li>
+                    <li class="mdc-list-item"><label>联系电话：</label><span>${studentBean.studentPhone}</span></li>
                 </ul>
                 <div style="float: right;margin: 30px 120px 30px 80px"><img src="images/ima.png" width="95.6px" height="113.9px">
                     <br>

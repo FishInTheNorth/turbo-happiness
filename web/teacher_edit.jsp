@@ -144,7 +144,7 @@
                             <div id="demo-tf-box-wrapper1">
                                 <div id="tf-box-example1" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"
-                                           name="adminName" aria-controls="name-validation-message" value="<c:if test="${bean.teacherName != null}">${bean.teacherName}</c:if>">
+                                           name="teacherName" aria-controls="name-validation-message" value="<c:if test="${bean.teacherName != null}">${bean.teacherName}</c:if>">
                                     <label for="tf-box1" class="mdc-text-field__label">姓名</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -159,7 +159,7 @@
                             <div id="demo-tf-box-wrapper3">
                                 <div id="tf-box-example3" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input"
-                                           name="adminName" aria-controls="name-validation-message" value="<c:if test="${bean.teacherPhone != null}">${bean.teacherPhone}</c:if>">
+                                           name="teacherPhone" aria-controls="name-validation-message" value="<c:if test="${bean.teacherPhone != null}">${bean.teacherPhone}</c:if>">
                                     <label for="tf-box1" class="mdc-text-field__label">联系电话</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -174,7 +174,7 @@
                             <div id="demo-tf-box-wrapper2">
                                 <div id="tf-box-example2" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box3" class="mdc-text-field__input"
-                                           name="adminPhone" aria-controls="name-validation-message" value="<c:if test="${bean.getMajor1() != null}">${bean.getMajor1()}</c:if>">
+                                           name="major" aria-controls="name-validation-message" value="<c:if test="${bean.getMajor1() != null}">${bean.getMajor1()}</c:if>">
                                     <label for="tf-box2" class="mdc-text-field__label">专业</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>

@@ -40,12 +40,12 @@ public class loginDao {
         map1.put("userName",rs.getString("student_name")); //将学生姓名加入到要传递的map中
         map1.put("id",rs.getString("student_id")); //将学生ID加入到要传递的map中
 
-        stduentTrainOperation st = new stduentTrainOperation();  //获得学生实训表的操作对象
-
-        ResultSet str = (ResultSet)st.select(0,rs.getString("student_id")).get("rs");  //获得查询的实训结果集
-        if (!str.next()) return; //若未查到直接退出
-        rs.last();
-        map1.put("trainId",rs.getInt("train_id")); //将实训号传递放入要传递的map中
+//        stduentTrainOperation st = new stduentTrainOperation();  //获得学生实训表的操作对象
+////
+////        ResultSet str = (ResultSet)st.select(0,rs.getString("student_id")).get("rs");  //获得查询的实训结果集
+////        if (!str.next()) return; //若未查到直接退出
+////        rs.last();
+//        map1.put("trainId",rs.getInt("train_id")); //将实训号传递放入要传递的map中
     }
     public void teacherLogin(String username,String password) throws  SQLException{
         teacherOperation teacher = new teacherOperation(); //创建教师表操作

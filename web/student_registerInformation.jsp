@@ -65,7 +65,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_index.jsp">
+                        <a class="mdc-drawer-link" href="studentInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -97,7 +97,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_Submit.jsp">
+                        <a class="mdc-drawer-link" href="studentSubmit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             提交报告
@@ -105,7 +105,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_queryGrade.jsp">
+                        <a class="mdc-drawer-link" href="studentGrade">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             查询成绩
@@ -113,7 +113,7 @@
                     </div>
                     <!--下侧按钮-->
                     <div class="mdc-list-item mdc-drawer-item purchase-link">
-                        <a href="logout.jsp"
+                        <a href="login.jsp"
                            class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link"
                            data-mdc-auto-init="MDCRipple">
                             登出系统
@@ -154,7 +154,7 @@
             <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
                 <span>登记实训信息</span>
             </div>
-            <form action="#" method="post">
+            <form action="studentRegister" method="post">
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                      style="margin: 30px 240px 0px 240px;">
                     <div class="template-demo">

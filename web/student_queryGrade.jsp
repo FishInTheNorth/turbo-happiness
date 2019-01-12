@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <c:if test="${empty sessionScope.userName}">
     <c:redirect url="login.jsp?f=5" />
 </c:if>
@@ -45,7 +45,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_index.jsp">
+                        <a class="mdc-drawer-link" href="studentInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -77,7 +77,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_Submit.jsp">
+                        <a class="mdc-drawer-link" href="studentSubmit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             提交报告
@@ -85,7 +85,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_queryGrade.jsp">
+                        <a class="mdc-drawer-link" href="studentGrade">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             查询成绩
@@ -93,7 +93,7 @@
                     </div>
                     <!--下侧按钮-->
                     <div class="mdc-list-item mdc-drawer-item purchase-link">
-                        <a href="logout.jsp"
+                        <a href="login.jsp"
                            class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link"
                            data-mdc-auto-init="MDCRipple">
                             登出系统
@@ -124,7 +124,7 @@
             </section>
             <!--用户信息及当前时间-->
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <font size="3x" face="KaiTi" style="color: white">欢迎你，${ sessionScope.userName} &nbsp&nbsp&nbsp<span
+                <font size="3x" face="KaiTi" style="color: white">欢迎你，${sessionScope.userName} &nbsp&nbsp&nbsp<span
                         id="mytime"></span></font>
             </section>
         </div>
@@ -135,7 +135,7 @@
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card table-responsive">
                     <div class="table-heading px-2 px-1 border-bottom">
-                        <h1 class="mdc-card__title mdc-card__title--large">汇报成绩表表</h1>
+                        <h1 class="mdc-card__title mdc-card__title--large">汇报成绩表</h1>
                     </div>
                     <table class="table table-hoverable">
                         <thead>
@@ -149,14 +149,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-left">45345</td>
-                            <td>实习阶段</td>
-                            <td>第一周</td>
-                            <td>zzz</td>
-                            <td>78</td>
-                            <td>续努力！</td>
-                        </tr>
+                 <c:forEach items="${list}"	var="bean">				
+				<tr class="text-left">
+					<td class="text-left">${bean.trainId}</td>	
+					<td>${bean.stage}</td>
+					<td>${bean.week}</td>
+					<td>${bean.teacherName}</td>
+					<td>${bean.grade}</td>
+					<td>${bean.opinion}</td>
+				</tr>
+				</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -169,7 +171,7 @@
                     </div>
                     <div class="text-wrapper pl-1">
                         <p class="font-weight-normal mb-0 mt-0">总成绩</p>
-                        <h3 class="mdc-typography--display1 font-weight-bold mb-1">69</h3>
+                        <h3 class="mdc-typography--display1 font-weight-bold mb-1">${allgrade}</h3>
                     </div>
                 </div>
             </div>

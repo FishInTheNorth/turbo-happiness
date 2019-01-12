@@ -10,6 +10,33 @@ public class teacherPtAllStudentBean {
     private String company; //实训所在公司
     private String contactName; //公司联系人姓名
     private String contactPhone; //公司联系人电话
+    private String studentPhone; //学生电话
+    private String studentQq; //学生qq
+    private int sex; //学生性别
+
+    public String getStudentPhone() {
+        return studentPhone;
+    }
+
+    public void setStudentPhone(String studentPhone) {
+        this.studentPhone = studentPhone;
+    }
+
+    public String getStudentQq() {
+        return studentQq;
+    }
+
+    public void setStudentQq(String studentQq) {
+        this.studentQq = studentQq;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
     public String getStudentId() {
         return studentId;
     }

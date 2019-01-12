@@ -1,8 +1,6 @@
 package servlet;
 
-import Dao.adminDao;
 import Dao.teacherDao;
-import bean.adminBean;
 import bean.teacherBean;
 import util.StringUtil;
 
@@ -23,18 +21,9 @@ public class teacherEditDoServlet extends HttpServlet {
 
         String teacherName = request.getParameter("teacherName");
         String major = request.getParameter("major");
-        StringUtil.toCN(teacherName);
-        StringUtil.toCN(major);
         String teacherPhone = request.getParameter("teacherPhone");
         String qq = request.getParameter("qq");
         String sex = request.getParameter("sex");
-        System.out.println(teacherName+"---"+major+"---"+teacherPhone+"---"+qq+"---"+sex);
-        int sex1 = 0;
-        if(sex.equals('女')){
-            sex1 = 0;
-        }else{
-            sex1 = 1;
-        }
         HttpSession user = request.getSession();
         String userId = (String) user.getAttribute("id");
         PrintWriter out = response.getWriter();
@@ -42,11 +31,11 @@ public class teacherEditDoServlet extends HttpServlet {
         teacherDao teacherDao = new teacherDao();
         teacherBean teacherBean = new teacherBean();
         teacherBean.setTeacherId(userId);
-        teacherBean.setTeacherName(teacherName);
-        teacherBean.setMajor1(major);
+        teacherBean.setTeacherName(StringUtil.toCN(teacherName));
+        teacherBean.setMajor1(StringUtil.toCN(major));
         teacherBean.setTeacherPhone(teacherPhone);
         teacherBean.setTeacherQq(qq);
-        teacherBean.setSex1(sex1);
+        teacherBean.setSex1(Integer.parseInt(sex));
         int i = -1;
         try {
             i = teacherDao.Edit(teacherBean);
@@ -63,7 +52,7 @@ public class teacherEditDoServlet extends HttpServlet {
         } else {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"信息修改成功！\");");
-            out.println("window.location.href='teacher_index.jsp'");
+            out.println("window.location.href='teacherInfo'");
             out.println("</script>");
         }
 

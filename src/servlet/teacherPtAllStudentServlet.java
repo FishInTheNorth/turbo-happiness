@@ -28,9 +28,8 @@ public class teacherPtAllStudentServlet extends HttpServlet {
         }
         // 将list作为参数传到teacher_pt_student.jsp页面
         request.setAttribute("list", list);
-System.out.println("到这啦！");
         // 跳转到teacher_pt_student.jsp
-        request.getRequestDispatcher("teacher_pt_student.jsp").forward(request, response);
+        request.getRequestDispatcher("teacher_pt_students.jsp").forward(request, response);
 
 
     }

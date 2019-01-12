@@ -157,12 +157,14 @@
                 </div>
                 <form action="#" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
+                        <input type="hidden" value="${param.s10}" name="studentId">
+                        <input type="hidden" value="${param.s11}" name="trainId">
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper1">
                                 <div id="tf-box-example1" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"name="name" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"name="name" aria-controls="name-validation-message" value="${param.s1}">
                                     <label for="tf-box1" class="mdc-text-field__label">姓名</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -176,7 +178,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper3">
                                 <div id="tf-box-example3" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box3" class="mdc-text-field__input"name="major" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box3" class="mdc-text-field__input"name="major" aria-controls="name-validation-message" value="${param.s2}">
                                     <label for="tf-box3" class="mdc-text-field__label">专业</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -190,7 +192,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper2">
                                 <div id="tf-box-example2" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input" name="phone" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input" name="phone" aria-controls="name-validation-message" value="${param.s3}">
                                     <label for="tf-box2" class="mdc-text-field__label">手机号</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -204,7 +206,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-leading-wrapper">
                                 <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input type="text" id="tf-box-leading" class="mdc-text-field__input" name="qq">
+                                    <input type="text" id="tf-box-leading" class="mdc-text-field__input" name="qq" value="${param.s4}">
                                     <label for="tf-box-leading" class="mdc-text-field__label">QQ</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -215,7 +217,7 @@
                         <div class="mdc-form-field">
                             <p>&nbsp&nbsp&nbsp性别：</p>
                             <div class="mdc-radio" data-mdc-auto-init="MDCRipple">
-                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio1"  checked name="sex">
+                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio1"  checked name="sex" value="1" <c:if test="${param.s5 == '1'}">${"checked" }</c:if>>
                                 <div class="mdc-radio__background">
                                     <div class="mdc-radio__outer-circle"></div>
                                     <div class="mdc-radio__inner-circle"></div>
@@ -225,7 +227,7 @@
                         </div>
                         <div class="mdc-form-field">
                             <div class="mdc-radio" data-mdc-auto-init="MDCRipple">
-                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio2" name="sex">
+                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio2" name="sex" value="0"  name="sex" <c:if test="${param.s5 == '0'}">${"checked" }</c:if>>
                                 <div class="mdc-radio__background">
                                     <div class="mdc-radio__outer-circle"></div>
                                     <div class="mdc-radio__inner-circle"></div>
@@ -238,7 +240,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper4">
                                 <div id="tf-box-example4" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box4" class="mdc-text-field__input" name="company" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box4" class="mdc-text-field__input" name="company" aria-controls="name-validation-message" value="${param.s6}">
                                     <label for="tf-box4" class="mdc-text-field__label">实习单位</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -252,41 +254,40 @@
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo" STYLE="float: left">
                             <select class="mdc-multi-select" id="selProv" name="province" onchange="changeProv()" style="height: 40px">
-                                <option value="">请选择所在省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="北京市">北京市</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="天津市">天津市</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="上海市">上海市</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="重庆市">重庆市</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="河北省">河北省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="山西省">山西省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="辽宁省">辽宁省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="吉林省">吉林省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="黑龙江省">黑龙江省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="江苏省">江苏省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="浙江省">浙江省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="安徽省">安徽省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="福建省">福建省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="江西省">江西省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="山东省">山东省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="河南省">河南省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="湖北省">湖北省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="湖南省">湖南省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="广东省">广东省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="海南省">海南省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="四川省">四川省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="贵州省">贵州省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="云南省">云南省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="陕西省">陕西省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="甘肃省">甘肃省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="青海省">青海省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="台湾省">台湾省</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="内蒙古自治区">内蒙古自治区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="广西壮族自治区">广西壮族自治区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="西藏自治区">西藏自治区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="宁夏回族自治区">宁夏回族自治区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="新疆维吾尔自治区">新疆维吾尔自治区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="香港特别行政区">香港特别行政区</option>
-                                <option class="mdc-list-item" role="option" tabindex="0" value="澳门特别行政区">澳门特别行政区</option>
+                                <option value="">请选择所在省</option> <!-- value="${param.s7}" -->
+                                <option class="mdc-list-item" role="option" tabindex="0" value="北京市" <c:if test="${param.s7=='北京市'}">${"selected" }</c:if>>北京市</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="天津市" <c:if test="${param.s7=='天津市'}">${"selected" }</c:if>>天津市</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="上海市" <c:if test="${param.s7=='上海市'}">${"selected" }</c:if>>上海市</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="重庆市" <c:if test="${param.s7=='重庆市'}">${"selected" }</c:if>>重庆市</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="河北省" <c:if test="${param.s7=='河北省'}">${"selected" }</c:if>>河北省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="山西省" <c:if test="${param.s7=='山西省'}">${"selected" }</c:if>>山西省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="辽宁省" <c:if test="${param.s7=='辽宁省'}">${"selected" }</c:if>>辽宁省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="吉林省" <c:if test="${param.s7=='吉林省'}">${"selected" }</c:if>>吉林省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="黑龙江省" <c:if test="${param.s7=='黑龙江省'}">${"selected" }</c:if>>黑龙江省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="江苏省" <c:if test="${param.s7=='江苏省'}">${"selected" }</c:if>>江苏省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="浙江省" <c:if test="${param.s7=='浙江省'}">${"selected" }</c:if>>浙江省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="安徽省" <c:if test="${param.s7=='安徽省'}">${"selected" }</c:if>>安徽省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="福建省" <c:if test="${param.s7=='福建省'}">${"selected" }</c:if>>福建省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="江西省" <c:if test="${param.s7=='江西省'}">${"selected" }</c:if>>江西省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="山东省" <c:if test="${param.s7=='山东省'}">${"selected" }</c:if>>山东省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="河南省" <c:if test="${param.s7=='河南省'}">${"selected" }</c:if>>河南省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="湖北省" <c:if test="${param.s7=='湖北省'}">${"selected" }</c:if>>湖北省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="湖南省" <c:if test="${param.s7=='湖南省'}">${"selected" }</c:if>>湖南省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="广东省" <c:if test="${param.s7=='广东省'}">${"selected" }</c:if>>广东省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="海南省" <c:if test="${param.s7=='海南省'}">${"selected" }</c:if>>海南省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="四川省" <c:if test="${param.s7=='四川省'}">${"selected" }</c:if>>四川省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="贵州省" <c:if test="${param.s7=='贵州省'}">${"selected" }</c:if>>贵州省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="云南省" <c:if test="${param.s7=='云南省'}">${"selected" }</c:if>>云南省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="陕西省" <c:if test="${param.s7=='陕西省'}">${"selected" }</c:if>>陕西省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="甘肃省" <c:if test="${param.s7=='甘肃省'}">${"selected" }</c:if>>甘肃省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="青海省" <c:if test="${param.s7=='青海省'}">${"selected" }</c:if>>青海省</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="内蒙古自治区" <c:if test="${param.s7=='内蒙古自治区'}">${"selected" }</c:if>>内蒙古自治区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="广西壮族自治区" <c:if test="${param.s7=='广西壮族自治区'}">${"selected" }</c:if>>广西壮族自治区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="西藏自治区" <c:if test="${param.s7=='西藏自治区'}">${"selected" }</c:if>>西藏自治区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="宁夏回族自治区" <c:if test="${param.s7=='宁夏回族自治区'}">${"selected" }</c:if>>宁夏回族自治区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="新疆维吾尔自治区" <c:if test="${param.s7=='新疆维吾尔自治区'}">${"selected" }</c:if>>新疆维吾尔自治区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="香港特别行政区" <c:if test="${param.s7=='香港特别行政区'}">${"selected" }</c:if>>香港特别行政区</option>
+                                <option class="mdc-list-item" role="option" tabindex="0" value="澳门特别行政区" <c:if test="${param.s7=='澳门特别行政区'}">${"selected" }</c:if>>澳门特别行政区</option>
                             </select>
                         </div>
                         <div class="template-demo" id="city" STYLE="float:left;visibility: hidden">
@@ -302,7 +303,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper7">
                                 <div id="tf-box-example7" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box7" class="mdc-text-field__input" name="contacts" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box7" class="mdc-text-field__input" name="contacts" aria-controls="name-validation-message" value="${param.s8}">
                                     <label for="tf-box7" class="mdc-text-field__label">单位联系人</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -316,7 +317,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper8">
                                 <div id="tf-box-example8" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box8" class="mdc-text-field__input" name="contactsPhone" aria-controls="name-validation-message">
+                                    <input required pattern=".{1,}" type="text" id="tf-box8" class="mdc-text-field__input" name="contactsPhone" aria-controls="name-validation-message" value="${param.s9}">
                                     <label for="tf-box8" class="mdc-text-field__label">联系人电话</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>

@@ -60,7 +60,7 @@ public class teacherPasswordServlet extends HttpServlet {
             } else {
                 out.println("<script type='text/javascript'>");
                 out.println("window.alert(\"数据修改成功！\");");
-                out.println("window.location.href='teacher_changePassword.jsp'");
+                out.println("window.location.href='teacherInfo'");
                 out.println("</script>");
             }
         }
