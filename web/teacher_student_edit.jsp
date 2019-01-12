@@ -97,7 +97,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_findway.jsp">
+                        <a class="mdc-drawer-link" href="teacherFindway">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -105,7 +105,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_Marking.jsp">
+                        <a class="mdc-drawer-link" href="teacherMarking">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             批阅汇报
@@ -155,7 +155,7 @@
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
                     <span>修改学生信息</span>
                 </div>
-                <form action="#" method="post">
+                <form action="teacherStudentEditDo" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <input type="hidden" value="${param.s10}" name="studentId">
                         <input type="hidden" value="${param.s11}" name="trainId">
@@ -164,7 +164,7 @@
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper1">
                                 <div id="tf-box-example1" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"name="name" aria-controls="name-validation-message" value="${param.s1}">
+                                    <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"name="studentName" aria-controls="name-validation-message" value="${param.s1}">
                                     <label for="tf-box1" class="mdc-text-field__label">姓名</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -291,7 +291,7 @@
                             </select>
                         </div>
                         <div class="template-demo" id="city" STYLE="float:left;visibility: hidden">
-                            <select  class="mdc-multi-select"id="selCity" name="city" style="height: 40px">
+                            <select  class="mdc-multi-select"id="selCity" name="city" style="height: 40px" onchange="this">
 
                             </select>
                         </div>

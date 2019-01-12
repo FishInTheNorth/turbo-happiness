@@ -17,7 +17,7 @@ public class studentOperation {
             Statement stmt = conn.createStatement();
             String sql = "select * from " + TABLE_NAME + " where is_use=1";
             if (studentId != null && !"".equals(studentId)) {
-                sql += " and student_id like '%" + studentId + "%'";
+                sql += " and student_id='" + studentId + "'";
             }
             if (studentName != null && !"".equals(studentName)) {
                 sql += " and student_name like '%" + studentName + "%'";

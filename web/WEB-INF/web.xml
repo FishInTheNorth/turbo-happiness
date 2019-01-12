@@ -74,6 +74,38 @@
         <url-pattern>/teacherPtAllStudent</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>teacherStudentEditDoServlet</servlet-name>
+        <servlet-class>servlet.teacherStudentEditDoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherStudentEditDoServlet</servlet-name>
+        <url-pattern>/teacherStudentEditDo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherDelStudentServlet</servlet-name>
+        <servlet-class>servlet.teacherDelStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherDelStudentServlet</servlet-name>
+        <url-pattern>/teacherDelStudent</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherMarkingServlet</servlet-name>
+        <servlet-class>servlet.teacherMarkingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherMarkingServlet</servlet-name>
+        <url-pattern>/teacherMarking</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherFindwayServlet</servlet-name>
+        <servlet-class>servlet.teacherFindwayServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherFindwayServlet</servlet-name>
+        <url-pattern>/teacherFindway</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminInfo</servlet-name>
         <servlet-class>servlet.adminInfoServlet</servlet-class>
     </servlet>

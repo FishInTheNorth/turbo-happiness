@@ -30,7 +30,7 @@
     }
     function del(id) {
         if (confirm('确定删除该学生吗?')) {
-            window.location.href = '#';
+            window.location.href = 'teacherDelStudent?id='+id;
         }
     }
     setInterval("showTime()", 1000);
@@ -57,7 +57,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/teacherEdit">
+                        <a class="mdc-drawer-link" href="teacherEdit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">track_changes</i>
                             个人信息修改
@@ -81,7 +81,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_findway.jsp">
+                        <a class="mdc-drawer-link" href="teacherFindway">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -89,7 +89,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_Marking.jsp">
+                        <a class="mdc-drawer-link" href="teacherMarking">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             批阅汇报
@@ -169,7 +169,7 @@
                                 <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp?s1=${bean.getStudentsName()}&s2=${bean.getMajor()}&s3=${bean.getStudentPhone()}&s4=${bean.getStudentQq()}&s5=${bean.getSex()}&s6=${bean.getCompany()}&s7=${bean.getProvince()}&s8=${bean.getContactName()}&s9=${bean.getContactPhone()}&s10=${bean.getStudentId()}&s11=${bean.getTrainId()}">
                                     修改
                                 </a>
-                                <a class="mdc-button mdc-button--stroked secondary-stroked-button" onclick="del(1)">
+                                <a class="mdc-button mdc-button--stroked secondary-stroked-button" onclick="del(${bean.getStudentId()})">
                                     删除
                                 </a>
                             </td>

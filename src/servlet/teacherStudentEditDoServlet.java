@@ -22,7 +22,7 @@ public class teacherStudentEditDoServlet extends HttpServlet {
 
         String studentId = request.getParameter("studentId");
         String trainId = request.getParameter("trainId");
-        String name = StringUtil.toCN(request.getParameter("name"));
+        String name = StringUtil.toCN(request.getParameter("studentName"));
         String major = StringUtil.toCN(request.getParameter("major"));
         String phone = request.getParameter("phone");
         String qq = request.getParameter("qq");
@@ -32,8 +32,6 @@ public class teacherStudentEditDoServlet extends HttpServlet {
         String contacts = StringUtil.toCN(request.getParameter("contacts"));
         String contactsPhone = request.getParameter("contactsPhone");
 
-        HttpSession user = request.getSession();
-        String userId = (String) user.getAttribute("id");
         PrintWriter out = response.getWriter();
         //将获取的数据放入teacherPtAllStudentBean里
         teacherDao teacherDao = new teacherDao();
@@ -49,6 +47,7 @@ public class teacherStudentEditDoServlet extends HttpServlet {
         teacherBean.setProvince(province);
         teacherBean.setContactName(contacts);
         teacherBean.setContactPhone(contactsPhone);
+        System.out.println("name:"+name);
         int i = -1;
         try {
             i = teacherDao.StudentEdit(teacherBean);
@@ -65,7 +64,7 @@ public class teacherStudentEditDoServlet extends HttpServlet {
         } else {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"信息修改成功！\");");
-            out.println("window.location.href='teacherPtAllStudent'");
+            out.println("window.location.href='teacherPtList'");
             out.println("</script>");
         }
     }

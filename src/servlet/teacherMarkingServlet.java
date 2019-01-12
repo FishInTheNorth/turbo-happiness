@@ -1,7 +1,6 @@
 package servlet;
 
 import Dao.teacherDao;
-import bean.teacherBean;
 import bean.teacherPtListBean;
 
 import javax.servlet.ServletException;
@@ -15,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "teacherPtListServlet")
-public class teacherPtListServlet extends HttpServlet {
+@WebServlet(name = "teacherMarkingServlet")
+public class teacherMarkingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = (String) request.getSession().getAttribute("id"); //从session获取id
 
@@ -45,8 +44,8 @@ public class teacherPtListServlet extends HttpServlet {
         request.setAttribute("stage", stage);
 
 
-        // 带参数跳转到teacher_pt_list.jsp
-        request.getRequestDispatcher("teacher_pt_list.jsp").forward(request, response);
+        // 带参数跳转到teacher_index.jsp
+        request.getRequestDispatcher("teacher_Marking.jsp").forward(request, response);
 
     }
 

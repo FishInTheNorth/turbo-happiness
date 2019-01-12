@@ -52,7 +52,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/teacherEdit">
+                        <a class="mdc-drawer-link" href="teacherEdit">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">track_changes</i>
                             个人信息修改
@@ -68,7 +68,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_pt_list.jsp">
+                        <a class="mdc-drawer-link" href="teacherPtList">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             查询学生信息
@@ -76,7 +76,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_findway.jsp">
+                        <a class="mdc-drawer-link" href="teacherFindway">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -84,7 +84,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_Marking.jsp">
+                        <a class="mdc-drawer-link" href="teacherMarking">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             批阅汇报
@@ -131,14 +131,14 @@
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-card">
-                <form action="#" method="post">
+                <form action="teacherMarking" method="post">
                     <section class="mdc-card__supporting-text">
                         <div class="mdc-layout-grid__inner" style="margin: 0 auto">
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop">
                                 <div class="template-demo">
                                     <div id="demo-tf-box-leading-wrapper">
                                         <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box w-100" >
-                                            <input type="text" id="tf-box-leading" class="mdc-text-field__input" name="trianNumber">
+                                            <input type="text" id="tf-box-leading" class="mdc-text-field__input" name="trainNumber" value="<c:if test="${trainNumber != null}">${trainNumber}</c:if>">
                                             <label for="tf-box-leading" class="mdc-text-field__label">实训编号</label>
                                             <div class="mdc-text-field__bottom-line"></div>
                                         </div>
@@ -149,7 +149,7 @@
                                 <div class="template-demo">
                                     <div id="demo-tf-box-leading-wrapper1">
                                         <div id="tf-box-leading-example1" class="mdc-text-field mdc-text-field--box w-100" >
-                                            <input type="date" id="tf-box-leading1" class="mdc-text-field__input" name="beginTime">
+                                            <input type="date" id="tf-box-leading1" class="mdc-text-field__input" name="beginTime" value="<c:if test="${beginTime != null}">${beginTime}</c:if>">
                                             <label for="tf-box-leading1" class="mdc-text-field__label">开始时间</label>
                                             <div class="mdc-text-field__bottom-line"></div>
                                         </div>
@@ -160,7 +160,7 @@
                                 <div class="template-demo">
                                     <div id="demo-tf-box-leading-wrapper4">
                                         <div id="tf-box-leading-example4" class="mdc-text-field mdc-text-field--box w-100" >
-                                            <input type="date" id="tf-box-leading4" class="mdc-text-field__input" name="endTime">
+                                            <input type="date" id="tf-box-leading4" class="mdc-text-field__input" name="endTime" value="<c:if test="${endTime != null}">${endTime}</c:if>">
                                             <label for="tf-box-leading4" class="mdc-text-field__label">结束时间</label>
                                             <div class="mdc-text-field__bottom-line"></div>
                                         </div>
@@ -175,8 +175,8 @@
                                             <div class="mdc-select__selected-text"></div>
                                             <div class="mdc-select__bottom-line"></div>
                                         </div>
-                                        <div class="mdc-simple-menu mdc-select__menu">
-                                            <ul class="mdc-list mdc-simple-menu__items">
+                                        <div class="mdc-simple-menu mdc-select__menu" >
+                                            <ul class="mdc-list mdc-simple-menu__items" name = "stage" value="<c:if test="${stage != null}">${stage}</c:if>">
                                                 <li class="mdc-list-item" role="option" tabindex="0" value="实习阶段">实习阶段</li>
                                                 <li class="mdc-list-item" role="option" tabindex="0" value="实训阶段">实训阶段</li>
                                                 <li class="mdc-list-item" role="option" tabindex="0" value="实践阶段">实践阶段</li>
@@ -186,7 +186,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop">
                                 <br>
                                 <button  type="submit" class="mdc-button mdc-button--raised mdc-button--compact mdc-ripple-upgraded" >
@@ -213,17 +212,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>实习阶段</td>
-                            <td>2018-2-2</td>
-                            <td>2019-2-2</td>
-                            <td>
-                                <a class="mdc-button mdc-button--stroked" href="teacher_studentsHand.jsp">
-                                    批阅实训汇报
-                                </a>
-                            </td>
-                        </tr>
+                        <c:forEach items="${data }"	var="bean">
+                            <tr>
+                                <td class="text-left">${bean.trainId}</td>
+                                <td>${bean.stage}</td>
+                                <td>${bean.beginTime}</td>
+                                <td>${bean.endTime}</td>
+                                <td>
+                                    <a class="mdc-button mdc-button--stroked" href="teacher_studentsHand.jsp">
+                                        进入批阅
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

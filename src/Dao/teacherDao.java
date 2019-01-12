@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static util.DBUtil.getConnection;
+
 public class teacherDao {
     public int Inquire(String userId, String oldPassword) throws SQLException {
 
         Connection conn;
-        conn = DBUtil.getConnection();
+        conn = getConnection();
         String sql = "select * from teacher where teacher_id = ? and password = ?";
         int i = -1;
         PreparedStatement pstmt = null;
@@ -37,7 +39,7 @@ public class teacherDao {
 
     public int updatePassword(String userId, String newPassword) throws SQLException {
         Connection conn;
-        conn = DBUtil.getConnection();
+        conn = getConnection();
         String sql = "update teacher set password = ? where teacher_id = ?";
         PreparedStatement pstmt = null;
         try {
@@ -53,7 +55,7 @@ public class teacherDao {
 
     public int Edit(teacherBean teacherBean) throws SQLException {
         Connection conn;
-        conn = DBUtil.getConnection();
+        conn = getConnection();
         String sql = "update teacher set teacher_name = ?,major = ?,teacher_phone = ?,teacher_qq = ?,sex = ? where teacher_id = ?";
         PreparedStatement pstmt = null;
         try {
@@ -150,7 +152,7 @@ public class teacherDao {
             bean = new teacherPtAllStudentBean();
             map1 = st1.select(rs.getString("student_Id"),"","","");  //在student表中搜索
             rs1 = (ResultSet) map1.get("rs");
-            rs1.next();
+            if(!rs1.next()) continue;                                       //如果当前搜索集为空则进行下一轮搜索
             bean.setStudentId(rs1.getString("student_id"));  //从student表获取信息
             bean.setStudentsName(rs1.getString("student_name"));
             bean.setMajor(rs1.getString("major"));
@@ -171,14 +173,21 @@ public class teacherDao {
 
     public int StudentEdit(teacherPtAllStudentBean bean) throws SQLException {  //用于教师修改学生信息
         Connection conn;
-        conn = DBUtil.getConnection();
+        conn = getConnection();
         studentOperation stu = new studentOperation();
         stduentTrainOperation stutr = new stduentTrainOperation();
 
-        int r1 = stu.update(bean.getStudentId(),bean.getContactName(),bean.getMajor(),bean.getStudentPhone(),bean.getStudentQq(),bean.getSex());
+        int r1 = stu.update(bean.getStudentId(),bean.getStudentsName(),bean.getMajor(),bean.getStudentPhone(),bean.getStudentQq(),bean.getSex());
         int r2 = stutr.addDetails(bean.getStudentId(),bean.getTrainId(),bean.getProvince(),bean.getCity(),bean.getCompany(),bean.getContactName(),bean.getContactPhone());
         if(r1 == -1 || r2 == -1)
           return -1;
         return 1;
     }
+
+    public int deleteStudent(String id) throws SQLException {
+        studentOperation stu = new studentOperation();
+        int i = stu.delete(id);
+        return i;
+    }
+
 }

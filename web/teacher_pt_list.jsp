@@ -81,7 +81,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_findway.jsp">
+                        <a class="mdc-drawer-link" href="teacherFindway">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -89,7 +89,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacher_Marking.jsp">
+                        <a class="mdc-drawer-link" href="teacherMarking">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             批阅汇报
@@ -207,17 +207,17 @@
                         <h1 class="mdc-card__title mdc-card__title--large">实训表</h1>
                     </div>
                     <table class="table table-hoverable">
-                        <thead>
-                        <tr>
-                            <th class="text-left">实训编号</th>
-                            <th>阶段</th>
-                            <th>开始时间</th>
-                            <th>结束时间</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${data }"	var="bean">
+                    <thead>
+                    <tr>
+                        <th class="text-left">实训编号</th>
+                        <th>阶段</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${data }"	var="bean">
                         <tr>
                             <td class="text-left">${bean.trainId}</td>
                             <td>${bean.stage}</td>
@@ -229,9 +229,9 @@
                                 </a>
                             </td>
                         </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                    </c:forEach>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </main>
