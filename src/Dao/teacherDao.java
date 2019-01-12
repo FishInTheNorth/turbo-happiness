@@ -1,8 +1,9 @@
 package Dao;
-import bean.studentTrainBean;
 import bean.teacherBean;
+import bean.teacherPtAllStudentBean;
 import bean.teacherPtListBean;
 import tableOperation.stduentTrainOperation;
+import tableOperation.studentOperation;
 import tableOperation.teacherOperation;
 import tableOperation.threeOperation;
 import util.DBUtil;
@@ -110,7 +111,6 @@ public class teacherDao {
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
             list.add(tea);
-            if(rs.next()) rs.close();
         }
         map = tho1.selectShixun(teacherId,trainId,beginTime,endTime);
         rs = (ResultSet)map.get("rs");
@@ -121,7 +121,6 @@ public class teacherDao {
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
             list.add(tea);
-            if(rs.next()) rs.close();
         }
         map = tho1.selectShijian(teacherId,trainId,beginTime,endTime);
         rs = (ResultSet)map.get("rs");
@@ -132,35 +131,37 @@ public class teacherDao {
             tea.setBeginTime(rs.getDate("begin_time"));
             tea.setEndTime(rs.getDate("end_time"));
             list.add(tea);
-            if(rs.next()) rs.close();
+            if(!rs.next()) rs.close();
         }
-        tea = new teacherPtListBean();
-        tea.setTrainId("16666");
-        tea.setStage("实践阶段");
-        tea.setBeginTime(null);
-        tea.setEndTime(null);
-        list.add(tea);
         return list;
     }
 
-    public List<studentTrainBean> teacherPtAllStudent(String trainId) throws SQLException {
+    public List<teacherPtAllStudentBean> teacherPtAllStudent(String trainId) throws SQLException {
         if(trainId == null || "".equals(trainId))
             return null;
-        studentTrainBean bean;
-        List<studentTrainBean> list = new ArrayList<>();
+        teacherPtAllStudentBean bean;
+        List<teacherPtAllStudentBean> list = new ArrayList<>();
         stduentTrainOperation st = new stduentTrainOperation();
-        HashMap map = st.select(Integer.parseInt(trainId),"");
+        studentOperation st1 = new studentOperation();
+        HashMap map = st.selectAll(Integer.parseInt(trainId));   //在student_train表中搜索
         ResultSet rs = (ResultSet) map.get("rs");
+        HashMap map1;
+        ResultSet rs1;
         while(rs.next()){
-            bean = new studentTrainBean();
-            bean.setTrainId(rs.getInt("trian_id"));
-            bean.setStudentId(rs.getString("student_Id"));
-            bean.setTrainId(rs.getInt("trian_id"));
-            bean.setTrainId(rs.getInt("trian_id"));
-            bean.setTrainId(rs.getInt("trian_id"));
-            bean.setTrainId(rs.getInt("trian_id"));
+            bean = new teacherPtAllStudentBean();
+            map1 = st1.select(rs.getString("student_Id"),"","","");  //在student表中搜索
+            rs1 = (ResultSet) map1.get("rs");
+            rs1.next();
+            bean.setStudentId(rs1.getString("student_id"));
+            bean.setStudentsName(rs1.getString("student_name"));
+            //bean.setMajor(rs1.getString("major"));
+            bean.setProvince(rs.getString("province"));
+            bean.setCity(rs.getString("city"));
+            bean.setCompany(rs.getString("company"));
+            bean.setContactName(rs.getString("contact_name"));
+            bean.setContactPhone(rs.getString("contact_phone"));
             list.add(bean);
-            if(rs.next()) rs.close();
         }
+        return list;
     }
 }

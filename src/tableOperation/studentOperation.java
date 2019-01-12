@@ -28,8 +28,8 @@ public class studentOperation {
             if(password !=null && !"".equals(password)){
                 sql += " and password ='" + password + "'";
             }
-            set = stmt.executeQuery(sql);
             System.out.println(sql);
+            set = stmt.executeQuery(sql);
             System.out.println();
         }
         map.put("rs",set);

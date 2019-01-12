@@ -155,15 +155,16 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${list }"	var="bean">
                         <tr>
-                            <td class="text-left">14545</td>
-                            <td>李四</td>
-                            <td>软件工程</td>
-                            <td>腾讯</td>
-                            <td>广东省</td>
-                            <td>深圳市</td>
-                            <td>zzz</td>
-                            <td>12345533421</td>
+                            <td class="text-left">${bean.studentId}</td>
+                            <td>${bean.studentsName}</td>
+                            <td>${bean.major}</td>
+                            <td>${bean.province}</td>
+                            <td>${bean.city}</td>
+                            <td>${bean.company}</td>
+                            <td>${bean.contactName}</td>
+                            <td>${bean.contactPhone}</td>
                             <td>
                                 <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp">
                                     修改
@@ -173,6 +174,7 @@
                                 </a>
                             </td>
                         </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

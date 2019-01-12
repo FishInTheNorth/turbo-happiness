@@ -23,9 +23,12 @@ public class teacherEditDoServlet extends HttpServlet {
 
         String teacherName = request.getParameter("teacherName");
         String major = request.getParameter("major");
+        StringUtil.toCN(teacherName);
+        StringUtil.toCN(major);
         String teacherPhone = request.getParameter("teacherPhone");
         String qq = request.getParameter("qq");
         String sex = request.getParameter("sex");
+        System.out.println(teacherName+"---"+major+"---"+teacherPhone+"---"+qq+"---"+sex);
         int sex1 = 0;
         if(sex.equals('女')){
             sex1 = 0;
@@ -55,12 +58,12 @@ public class teacherEditDoServlet extends HttpServlet {
         if (i == -1) {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"信息修改失败！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
+            out.println("window.location.href='teacher_edit.jsp'");
             out.println("</script>");
         } else {
             out.println("<script type='text/javascript'>");
             out.println("window.alert(\"信息修改成功！\");");
-            out.println("window.location.href='student_changePassword.jsp'");
+            out.println("window.location.href='teacher_index.jsp'");
             out.println("</script>");
         }
 

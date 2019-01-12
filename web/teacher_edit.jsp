@@ -138,14 +138,14 @@
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:50px">
                     <span>修改个人信息</span>
                 </div>
-                <form action="/teacherEditDo" method="post">
+                <form action="teacherEditDo" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper1">
                                 <div id="tf-box-example1" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box1" class="mdc-text-field__input"
                                            name="adminName" aria-controls="name-validation-message" value="<c:if test="${bean.teacherName != null}">${bean.teacherName}</c:if>">
-                                    <!--<label for="tf-box1" class="mdc-text-field__label">姓名</label>-->
+                                    <label for="tf-box1" class="mdc-text-field__label">姓名</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
                                 <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" id="name-validation-msg1">
@@ -154,18 +154,32 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
+                        <div class="template-demo">
+                            <div id="demo-tf-box-wrapper3">
+                                <div id="tf-box-example3" class="mdc-text-field mdc-text-field--box w-100">
+                                    <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input"
+                                           name="adminName" aria-controls="name-validation-message" value="<c:if test="${bean.teacherPhone != null}">${bean.teacherPhone}</c:if>">
+                                    <label for="tf-box1" class="mdc-text-field__label">联系电话</label>
+                                    <div class="mdc-text-field__bottom-line"></div>
+                                </div>
+                                <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" id="name-validation-msg3">
+                                    联系电话不能为空
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
                             <div id="demo-tf-box-wrapper2">
                                 <div id="tf-box-example2" class="mdc-text-field mdc-text-field--box w-100">
-                                    <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input"
-                                           name="adminPhone" aria-controls="name-validation-message" value="<c:if test="${bean.teacherPhone != null}">${bean.teacherPhone}</c:if>">
-                                    <!--<label for="tf-box2" class="mdc-text-field__label">联系电话</label>-->
+                                    <input required pattern=".{1,}" type="text" id="tf-box3" class="mdc-text-field__input"
+                                           name="adminPhone" aria-controls="name-validation-message" value="<c:if test="${bean.getMajor1() != null}">${bean.getMajor1()}</c:if>">
+                                    <label for="tf-box2" class="mdc-text-field__label">专业</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
                                 <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" id="name-validation-msg2">
-                                    联系电话不能为空
+                                    专业不能为空
                                 </p>
                             </div>
                         </div>
@@ -175,7 +189,7 @@
                             <div id="demo-tf-box-leading-wrapper">
                                 <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box w-100">
                                     <input type="text" id="tf-box-leading" class="mdc-text-field__input" name="qq" value="<c:if test="${bean.teacherQq != null}">${bean.teacherQq}</c:if>">
-                                    <!-- <label for="tf-box-leading" class="mdc-text-field__label">QQ</label>-->
+                                    <label for="tf-box-leading" class="mdc-text-field__label">QQ</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
                             </div>
@@ -185,7 +199,7 @@
                         <div class="mdc-form-field">
                             <p>&nbsp&nbsp&nbsp性别：</p>
                             <div class="mdc-radio" data-mdc-auto-init="MDCRipple">
-                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio1" name="sex"  value="1" <c:if test="${bean.sex == 1}">${"checked" }</c:if>>
+                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio1" name="sex"  value="1" <c:if test="${bean.getSex1() == 1}">${"checked" }</c:if>>
                                 <div class="mdc-radio__background">
                                     <div class="mdc-radio__outer-circle"></div>
                                     <div class="mdc-radio__inner-circle"></div>
@@ -195,7 +209,7 @@
                         </div>
                         <div class="mdc-form-field">
                             <div class="mdc-radio" data-mdc-auto-init="MDCRipple">
-                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio2" name="sex"  value="0" <c:if test="${bean.sex == 0}">${"checked" }</c:if>>
+                                <input class="mdc-radio__native-control" type="radio" id="ex0-default-radio2" name="sex"  value="0" <c:if test="${bean.getSex1() == 0}">${"checked" }</c:if>>
                                 <div class="mdc-radio__background">
                                     <div class="mdc-radio__outer-circle"></div>
                                     <div class="mdc-radio__inner-circle"></div>

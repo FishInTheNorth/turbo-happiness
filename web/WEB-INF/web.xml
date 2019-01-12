@@ -67,11 +67,11 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>teacherPtStudentServlet</servlet-name>
-        <servlet-class>servlet.teacherPtStudentServlet</servlet-class>
+        <servlet-class>servlet.teacherPtAllStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>teacherPtStudentServlet</servlet-name>
-        <url-pattern>/teacherPtStudent</url-pattern>
+        <url-pattern>/teacherPtAllStudent</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminInfo</servlet-name>

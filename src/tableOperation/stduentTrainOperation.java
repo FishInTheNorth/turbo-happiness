@@ -17,11 +17,11 @@ public class stduentTrainOperation {
             String sql = "select * from " + TABLE_NAME +
                     " where is_use=1 "+ " AND student_Id ='"+ studentId + "'";
             if (trainId != 0){
-                sql +=" AND train_id="+ trainId;
+                sql +=" AND trian_id="+ trainId;
             }
 
-            set = stmt.executeQuery(sql);
             System.out.println(sql);
+            set = stmt.executeQuery(sql);
             System.out.println();
         }
         map.put("rs",set);
@@ -84,6 +84,27 @@ public class stduentTrainOperation {
 
         DBUtil.freeConnection(conn);
         return result;
+    }
+    public HashMap selectAll(int trainId) throws SQLException{
+        //通过实训号和学生确定学生实训信息
+        Connection conn = DBUtil.getConnection();
+        ResultSet set = null;
+        HashMap<String,Object> map =  new HashMap<>();
+        if (conn!=null){
+            Statement stmt = conn.createStatement();
+            String sql = "select * from " + TABLE_NAME +
+                    " where is_use=1 ";
+            if (trainId != 0){
+                sql +=" AND trian_id="+ trainId;
+            }
+
+            System.out.println(sql);
+            set = stmt.executeQuery(sql);
+            System.out.println();
+        }
+        map.put("rs",set);
+        map.put("conn",conn);
+        return map;
     }
 
 }

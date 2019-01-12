@@ -224,7 +224,7 @@
                             <td>${bean.beginTime}</td>
                             <td>${bean.endTime}</td>
                             <td>
-                                <a class="mdc-button mdc-button--stroked" href="teacherPtStudent?trainId=" + ${bean.trainId} ".jsp">
+                                <a class="mdc-button mdc-button--stroked" href='teacherPtAllStudent?trainId=${bean.trainId}'>
                                     详细信息
                                 </a>
                             </td>
