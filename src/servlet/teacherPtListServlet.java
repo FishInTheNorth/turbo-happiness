@@ -3,6 +3,7 @@ package servlet;
 import Dao.teacherDao;
 import bean.teacherBean;
 import bean.teacherPtListBean;
+import util.StringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,12 +29,12 @@ public class teacherPtListServlet extends HttpServlet {
         if(request.getParameter("endTime") != null && "".equals(request.getParameter("endTime")) == false) {
             endTime = Date.valueOf(request.getParameter("endTime"));
         }
-        String stage = request.getParameter("stage");
+        String stage = StringUtil.toCN(request.getParameter("stage"));
 
         teacherDao dao = new teacherDao();
         List<teacherPtListBean> list = new ArrayList<>();
         try {
-            list = dao.teacherPtList(userName,trainNumber,beginTime,endTime); //传入list
+            list = dao.teacherPtList(userName,trainNumber,beginTime,endTime,stage); //传入list
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -43,7 +44,6 @@ public class teacherPtListServlet extends HttpServlet {
         request.setAttribute("beginTime", beginTime);
         request.setAttribute("endTime", endTime);
         request.setAttribute("stage", stage);
-
 
         // 带参数跳转到teacher_pt_list.jsp
         request.getRequestDispatcher("teacher_pt_list.jsp").forward(request, response);

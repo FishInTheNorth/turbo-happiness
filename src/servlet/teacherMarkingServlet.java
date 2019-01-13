@@ -2,6 +2,7 @@ package servlet;
 
 import Dao.teacherDao;
 import bean.teacherPtListBean;
+import util.StringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,12 +28,11 @@ public class teacherMarkingServlet extends HttpServlet {
         if(request.getParameter("endTime") != null && "".equals(request.getParameter("endTime")) == false) {
             endTime = Date.valueOf(request.getParameter("endTime"));
         }
-        String stage = request.getParameter("stage");
-
+        String stage = StringUtil.toCN(request.getParameter("stage"));
         teacherDao dao = new teacherDao();
         List<teacherPtListBean> list = new ArrayList<>();
         try {
-            list = dao.teacherPtList(userName,trainNumber,beginTime,endTime); //传入list
+            list = dao.teacherPtList(userName,trainNumber,beginTime,endTime,stage); //传入list
         } catch (SQLException e) {
             e.printStackTrace();
         }

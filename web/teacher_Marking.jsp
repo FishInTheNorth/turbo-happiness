@@ -31,6 +31,11 @@
     }
     setInterval("showTime()", 1000);
 </script>
+<script type="text/javascript">
+    function sub(){
+        document.getElementById("form1").submit();
+    }
+</script>
 <body>
 <div class="body-wrapper">
     <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
@@ -131,7 +136,7 @@
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-card">
-                <form action="teacherMarking" method="post">
+                <form action="teacherMarking" method="post" id="form1">
                     <section class="mdc-card__supporting-text">
                         <div class="mdc-layout-grid__inner" style="margin: 0 auto">
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop">
@@ -169,21 +174,13 @@
                             </div>
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop">
                                 <div class="template-demo">
-                                    <div id="hero-js-select1" class="mdc-select" role="listbox">
-                                        <div class="mdc-select__surface" tabindex="0">
-                                            <div class="mdc-select__label">所在阶段</div>
-                                            <div class="mdc-select__selected-text"></div>
-                                            <div class="mdc-select__bottom-line"></div>
-                                        </div>
-                                        <div class="mdc-simple-menu mdc-select__menu" >
-                                            <ul class="mdc-list mdc-simple-menu__items" name = "stage" value="<c:if test="${stage != null}">${stage}</c:if>">
-                                                <li class="mdc-list-item" role="option" tabindex="0" value="实习阶段">实习阶段</li>
-                                                <li class="mdc-list-item" role="option" tabindex="0" value="实训阶段">实训阶段</li>
-                                                <li class="mdc-list-item" role="option" tabindex="0" value="实践阶段">实践阶段</li>
+                                    <select class="mdc-list mdc-simple-menu__items" name = "stage" id = "stage" style="height: 58px" onchange="sub()">
+                                        <option value = "">所在阶段</option>
+                                        <option class="mdc-list-item" role="option" tabindex="0" value="实习阶段" <c:if test="${stage == '实习阶段'}">${"selected"}</c:if>>实习阶段</option>
+                                        <option class="mdc-list-item" role="option" tabindex="0" value="实训阶段" <c:if test="${stage == '实训阶段'}">${"selected"}</c:if>>实训阶段</option>
+                                        <option class="mdc-list-item" role="option" tabindex="0" value="实践阶段" <c:if test="${stage == '实践阶段'}">${"selected"}</c:if>>实践阶段</option>
 
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop">

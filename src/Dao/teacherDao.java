@@ -94,45 +94,52 @@ public class teacherDao {
 
     }
 
-    public List<teacherPtListBean> teacherPtList(String teacherId, String trainNumber, Date beginTime, Date endTime) throws SQLException {
+    public List<teacherPtListBean> teacherPtList(String teacherId, String trainNumber, Date beginTime, Date endTime,String stage) throws SQLException {
         List<teacherPtListBean> list = new ArrayList<>();
         teacherPtListBean tea;
         threeOperation tho1 = new threeOperation("");
         HashMap map;
         int trainId = 0;
+        ResultSet rs;
         if(trainNumber != null && "".equals(trainNumber) == false){
             trainId = Integer.parseInt(trainNumber);
         }
 
-        map = tho1.selectShixi(teacherId,trainId,beginTime,endTime);
-        ResultSet rs = (ResultSet)map.get("rs");
-        while(rs.next()){
-            tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("train_id"));
-            tea.setStage("ÊµÏ°½×¶Î");
-            tea.setBeginTime(rs.getDate("begin_time"));
-            tea.setEndTime(rs.getDate("end_time"));
-            list.add(tea);
+        if(stage == null || stage.equals("") || stage.equals("ÊµÏ°½×¶Î")) {
+            map = tho1.selectShixi(teacherId, trainId, beginTime, endTime);
+            rs = (ResultSet) map.get("rs");
+            while (rs.next()) {
+                tea = new teacherPtListBean();
+                tea.setTrainId(rs.getString("train_id"));
+                tea.setStage("ÊµÏ°½×¶Î");
+                tea.setBeginTime(rs.getDate("begin_time"));
+                tea.setEndTime(rs.getDate("end_time"));
+                list.add(tea);
+            }
         }
-        map = tho1.selectShixun(teacherId,trainId,beginTime,endTime);
-        rs = (ResultSet)map.get("rs");
-        while(rs.next()){
-            tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("train_id"));
-            tea.setStage("ÊµÑµ½×¶Î");
-            tea.setBeginTime(rs.getDate("begin_time"));
-            tea.setEndTime(rs.getDate("end_time"));
-            list.add(tea);
+        if(stage == null || stage.equals("") || stage.equals("ÊµÑµ½×¶Î")) {
+            map = tho1.selectShixun(teacherId, trainId, beginTime, endTime);
+            rs = (ResultSet) map.get("rs");
+            while (rs.next()) {
+                tea = new teacherPtListBean();
+                tea.setTrainId(rs.getString("train_id"));
+                tea.setStage("ÊµÑµ½×¶Î");
+                tea.setBeginTime(rs.getDate("begin_time"));
+                tea.setEndTime(rs.getDate("end_time"));
+                list.add(tea);
+            }
         }
-        map = tho1.selectShijian(teacherId,trainId,beginTime,endTime);
-        rs = (ResultSet)map.get("rs");
-        while(rs.next()){
-            tea = new teacherPtListBean();
-            tea.setTrainId(rs.getString("train_id"));
-            tea.setStage("Êµ¼ù½×¶Î");
-            tea.setBeginTime(rs.getDate("begin_time"));
-            tea.setEndTime(rs.getDate("end_time"));
-            list.add(tea);
+        if(stage == null || stage.equals("") || stage.equals("Êµ¼ù½×¶Î")) {
+            map = tho1.selectShijian(teacherId, trainId, beginTime, endTime);
+            rs = (ResultSet) map.get("rs");
+            while (rs.next()) {
+                tea = new teacherPtListBean();
+                tea.setTrainId(rs.getString("train_id"));
+                tea.setStage("Êµ¼ù½×¶Î");
+                tea.setBeginTime(rs.getDate("begin_time"));
+                tea.setEndTime(rs.getDate("end_time"));
+                list.add(tea);
+            }
         }
         return list;
     }

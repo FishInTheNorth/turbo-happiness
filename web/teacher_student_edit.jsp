@@ -291,8 +291,8 @@
                             </select>
                         </div>
                         <div class="template-demo" id="city" STYLE="float:left;visibility: hidden">
-                            <select  class="mdc-multi-select"id="selCity" name="city" style="height: 40px" onchange="this">
-
+                            <select  class="mdc-multi-select"id="selCity" name="city" style="height: 40px" onchange="this" >
+                                <option class="mdc-list-item" role="option" tabindex="0" value="${param.s12}" <c:if test="${param.s12!=null}">${"selected" }</c:if>>${param.s12}</option>
                             </select>
                         </div>
                     </div>

@@ -166,7 +166,7 @@
                             <td>${bean.getContactName()}</td>
                             <td>${bean.getContactPhone()}</td>
                             <td>
-                                <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp?s1=${bean.getStudentsName()}&s2=${bean.getMajor()}&s3=${bean.getStudentPhone()}&s4=${bean.getStudentQq()}&s5=${bean.getSex()}&s6=${bean.getCompany()}&s7=${bean.getProvince()}&s8=${bean.getContactName()}&s9=${bean.getContactPhone()}&s10=${bean.getStudentId()}&s11=${bean.getTrainId()}">
+                                <a class="mdc-button mdc-button--stroked" href="teacher_student_edit.jsp?s1=${bean.getStudentsName()}&s2=${bean.getMajor()}&s3=${bean.getStudentPhone()}&s4=${bean.getStudentQq()}&s5=${bean.getSex()}&s6=${bean.getCompany()}&s7=${bean.getProvince()}&s8=${bean.getContactName()}&s9=${bean.getContactPhone()}&s10=${bean.getStudentId()}&s11=${bean.getTrainId()}&s12${bean.getCity()}">
                                     修改
                                 </a>
                                 <a class="mdc-button mdc-button--stroked secondary-stroked-button" onclick="del(${bean.getStudentId()})">

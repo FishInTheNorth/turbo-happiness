@@ -29,6 +29,7 @@ public class teacherStudentEditDoServlet extends HttpServlet {
         String sex = request.getParameter("sex");
         String company = StringUtil.toCN(request.getParameter("company"));
         String province = StringUtil.toCN(request.getParameter("province"));
+        String city = StringUtil.toCN(request.getParameter("city"));
         String contacts = StringUtil.toCN(request.getParameter("contacts"));
         String contactsPhone = request.getParameter("contactsPhone");
 
@@ -45,9 +46,9 @@ public class teacherStudentEditDoServlet extends HttpServlet {
         teacherBean.setSex(Integer.parseInt(sex));
         teacherBean.setCompany(company);
         teacherBean.setProvince(province);
+        teacherBean.setCity(city);
         teacherBean.setContactName(contacts);
         teacherBean.setContactPhone(contactsPhone);
-        System.out.println("name:"+name);
         int i = -1;
         try {
             i = teacherDao.StudentEdit(teacherBean);
