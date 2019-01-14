@@ -134,7 +134,7 @@
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card table-responsive">
                     <div class="table-heading px-2 px-1 border-bottom">
-                        <h1 class="mdc-card__title mdc-card__title--large">学生实训表</h1>
+                        <h1 class="mdc-card__title mdc-card__title--large">学生汇报表</h1>
                     </div>
                     <table class="table table-hoverable">
                         <thead>
@@ -146,15 +146,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>李四</td>
-                            <td>软件工程</td>
-                            <td>
-                            <a class="mdc-button mdc-button--stroked" href="teacher_studentHomework.jsp">
-                                批阅汇报
-                            </a></td>
-                        </tr>
+                        <c:forEach items="${list }"	var="bean">
+                            <tr>
+                                <td class="text-left">${bean.getStudentId()}</td>
+                                <td>${bean.getStudentsName()}</td>
+                                <td>${bean.getMajor()}</td>
+                                <td>
+                                    <a class="mdc-button mdc-button--stroked" href='teacherPHomework?studentID=${bean.getStudentId()}&trainId=${trainId}&stage=${stage}'>
+                                        详细信息
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

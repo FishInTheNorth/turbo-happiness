@@ -136,10 +136,13 @@
                         src="<c:url value="/resources/plugins/pdfjs/web/viewer.html" />?file=<c:url value="${address}"/>">
                 </iframe>
             </div>
-            </div>
             <br>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop">
-                <form action="#" method="post">
+                <form action="teacherPHomeworkDo" method="post">
+                    <input type="hidden" value="${param.trainId}" name="trainId">
+                    <input type="hidden" value="${param.studentId}" name="studentId">
+                    <input type="hidden" value="${param.week}" name="week">
+                    <input type="hidden" value="${param.stage}" name="stage">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop"
                          style="margin: 30px 240px 0px 240px;">
                         <div class="template-demo">
@@ -147,19 +150,19 @@
                                 <div id="tf-box-example" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="number" id="tf-box"
                                            class="mdc-text-field__input" name="grade"
-                                           aria-controls="name-validation-message">
+                                           aria-controls="name-validation-message" value="<c:if test='${param.grade != null}'>${param.grade}</c:if>">
                                     <label for="tf-box" class="mdc-text-field__label">评分</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
                                 <p class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
                                    id="name-validation-msg">
-                                    评分不能为空
+                                    评分不能为空白且需为整数
                                 </p>
                             </div>
                         </div>
                         <div>意见及建议：</div>
                         <div class="template-demo" >
-                            <textarea class="mdc-text-field__input" name="opinion" style="width:500px;height:111px;margin: 0 auto"></textarea>
+                            <textarea class="mdc-text-field__input" name="opinion" style="width:700px;height:111px;margin: 1px auto" ><c:if test='${param.opinion != null}'>${param.opinion}</c:if></textarea>
                         </div>
                     </div>
                     <!--下侧按钮-->

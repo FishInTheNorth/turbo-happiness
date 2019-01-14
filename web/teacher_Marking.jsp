@@ -216,7 +216,7 @@
                                 <td>${bean.beginTime}</td>
                                 <td>${bean.endTime}</td>
                                 <td>
-                                    <a class="mdc-button mdc-button--stroked" href="teacher_studentsHand.jsp">
+                                    <a class="mdc-button mdc-button--stroked" href="teacherMarkingDo?trainId=${bean.trainId}&stage=${bean.stage}">
                                         进入批阅
                                     </a>
                                 </td>

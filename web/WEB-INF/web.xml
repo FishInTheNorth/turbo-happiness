@@ -106,6 +106,38 @@
         <url-pattern>/teacherFindway</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>teacherFindWay</servlet-name>
+        <servlet-class>servlet.teacherFindWay</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherFindWay</servlet-name>
+        <url-pattern>/teacherFindWay</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherMarkingDoServlet</servlet-name>
+        <servlet-class>servlet.teacherMarkingDoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherMarkingDoServlet</servlet-name>
+        <url-pattern>/teacherMarkingDo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherPHomeworkServlet</servlet-name>
+        <servlet-class>servlet.teacherPHomeworkServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherPHomeworkServlet</servlet-name>
+        <url-pattern>/teacherPHomework</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherPHomeworkDoServlet</servlet-name>
+        <servlet-class>servlet.teacherPHomeworkDoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherPHomeworkDoServlet</servlet-name>
+        <url-pattern>/teacherPHomeworkDo</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AdminInfo</servlet-name>
         <servlet-class>servlet.adminInfoServlet</servlet-class>
     </servlet>
@@ -232,5 +264,13 @@
     <servlet-mapping>
         <servlet-name>studentPasswordServlet</servlet-name>
         <url-pattern>/studentPasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>studentEditInfoServlet</servlet-name>
+        <servlet-class>servlet.studentEditInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentEditInfoServlet</servlet-name>
+        <url-pattern>/studentEditInfo</url-pattern>
     </servlet-mapping>
 </web-app>

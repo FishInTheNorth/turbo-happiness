@@ -77,7 +77,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacherFindway">
+                        <a class="mdc-drawer-link" href="teacherFindway ">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -140,31 +140,44 @@
                         <thead>
                         <tr>
                             <th class="text-left">学号</th>
-                            <th>姓名</th>
-                            <th>专业</th>
                             <th>周数</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>分数</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>李四</td>
-                            <td>软件工程</td>
-                            <td>第一周</td>
-                            <td>
-                                <a class="mdc-button mdc-button--stroked" href="teacher_studentMarking.jsp">
-                                    批阅
-                                </a></td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">14545</td>
-                            <td>李四</td>
-                            <td>软件工程</td>
-                            <td>第一周</td>
-                            <td>
-                                未交</td>
-                        </tr>
+                        <c:forEach items="${list }"	var="bean">
+                            <tr>
+                                <td class="text-left">${bean.getStudentId()}</td>
+                                <td>第${bean.getWeek()}周</td>
+                                <td>${bean.getBeginTime()}</td>
+                                <td>${bean.getEndTime()}</td>
+                                <td>${bean.getGrade()}</td>
+                                <td>
+                                    <c:choose>
+                                    <c:when test="${bean.getAddress() == null or bean.getAddress() == ''}"> <!-- 此处用or不能用||  -->
+                                        <lable>还未提交</lable>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:choose>
+                                        <c:when test="${bean.getGrade() == null or bean.getGrade() == ''}">  <!-- 此处用or不能用||  -->
+                                        <a class="mdc-button mdc-button--stroked" href='teacher_studentMarking.jsp?address=${bean.getAddress()}&trainId=${bean.getTrainId()}&studentId=${bean.getStudentId()}&week=${bean.getWeek()}&stage=${stage}'>
+                                             批阅
+                                        </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <a class="mdc-button mdc-button--stroked" href='teacher_studentMarking.jsp?address=${bean.getAddress()}&grade=${bean.getGrade()}&opinion=${bean.getOpinion()}&trainId=${bean.getTrainId()}&studentId=${bean.getStudentId()}&week=${bean.getWeek()}&stage=${stage}'>
+                                            修改分数
+                                        </a>
+                                        </c:otherwise>
+                                        </c:choose>
+                                    </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

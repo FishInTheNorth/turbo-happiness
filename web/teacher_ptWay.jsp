@@ -15,12 +15,9 @@
   用于教师查看实训回访路径
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-<c:if test="${empty sessionScope.userName}">
-    <c:redirect url="login.jsp?f=5" />
-</c:if>
+
 <head>
     <title>实训回访路径界面</title>
     <meta charset="utf-8">
@@ -52,7 +49,7 @@
                 <nav class="mdc-list mdc-drawer-menu">
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacherInfo">
+                        <a class="mdc-drawer-link" href="teacher_index.jsp">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">desktop_mac</i>
                             个人信息查询
@@ -60,7 +57,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="/teacherEdit">
+                        <a class="mdc-drawer-link" href="teacher_edit.jsp">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">track_changes</i>
                             个人信息修改
@@ -76,7 +73,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacherPtList">
+                        <a class="mdc-drawer-link" href="teacher_pt_list.jsp">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">dashboard</i>
                             查询学生信息
@@ -84,7 +81,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacherFindway">
+                        <a class="mdc-drawer-link" href="teacher_findway.jsp">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">grid_on</i>
                             回访路径
@@ -92,7 +89,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="teacherMarking">
+                        <a class="mdc-drawer-link" href="teacher_Marking.jsp">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">pages</i>
                             批阅汇报
@@ -100,7 +97,7 @@
                     </div>
                     <!--下侧按钮-->
                     <div class="mdc-list-item mdc-drawer-item purchase-link">
-                        <a href="logout.jsp"
+                        <a href="login.jsp"
                            class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link"
                            data-mdc-auto-init="MDCRipple">
                             登出系统
@@ -131,7 +128,7 @@
             </section>
             <!--用户信息及当前时间-->
             <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-                <font size="3x" face="KaiTi" style="color: white">欢迎你，${ sessionScope.userName}&nbsp&nbsp&nbsp<span
+                <font size="3x" face="KaiTi" style="color: white">欢迎你，教师&nbsp&nbsp&nbsp<span
                         id="mytime"></span></font>
             </section>
         </div>
@@ -143,33 +140,16 @@
                     <div class="table-heading px-2 px-1 border-bottom">
                         <h1 class="mdc-card__title mdc-card__title--large">回访路径表</h1>
                     </div>
-                    <table class="table table-hoverable">
-                        <thead>
-                        <tr>
-                            <th >起点省</th>
-                            <th >起点市</th>
-                            <th></th>
-                            <th>终点省</th>
-                            <th>终点市</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>江西</td>
-                            <td>南昌</td>
-                            <td>→</td>
-                            <td>湖南</td>
-                            <td>长沙</td>
-                        </tr>
-                        <tr>
-                            <td>湖南</td>
-                            <td>长沙</td>
-                            <td>→</td>
-                            <td>福建</td>
-                            <td>厦门</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                   <table>
+					<td>
+						<label>城市顺序编号：</label><span>${listNumber}</span>
+					</td>
+					</table>
+					<table>
+					<td>
+						<span>${route}</span>
+						</td>
+					</table>
                 </div>
             </div>
         </main>

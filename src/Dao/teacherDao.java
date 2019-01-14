@@ -1,12 +1,8 @@
 package Dao;
-import bean.teacherBean;
-import bean.teacherPtAllStudentBean;
-import bean.teacherPtListBean;
-import tableOperation.stduentTrainOperation;
-import tableOperation.studentOperation;
-import tableOperation.teacherOperation;
-import tableOperation.threeOperation;
+import bean.*;
+import tableOperation.*;
 import util.DBUtil;
+import util.StringUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -197,4 +193,98 @@ public class teacherDao {
         return i;
     }
 
+    public List<String> findwayMap(String trainId) throws SQLException {  //两个参数：要查的实训编号 和 起始城市
+        List<String> list = new ArrayList<>();
+        stduentTrainOperation sto = new stduentTrainOperation();
+        HashMap map = sto.selectAll(Integer.parseInt(trainId));
+        ResultSet rs = (ResultSet) map.get("rs");
+        while(rs.next()){
+            list.add(rs.getString("city"));
+        }
+        return list;
+    }
+
+    public List<studentBean> selectAllTrainStudents(List<String> list) throws SQLException {
+        List<studentBean> list1 = new ArrayList<>();
+        studentOperation stu = new studentOperation();
+        studentBean bean = new studentBean();
+        ResultSet rs;
+        for(int i = 0;i < list.size();i ++) {  //遍历所有学生学号
+            HashMap map = stu.select(list.get(i),"","","");
+            rs = (ResultSet) map.get("rs");
+            while(rs.next()) {  //遍历所有根据学生学号搜索到的学生信息
+                bean = new studentBean();
+                bean.setStudentId(rs.getString("student_id"));
+                bean.setStudentsName(rs.getString("student_name"));
+                bean.setMajor(rs.getString("major"));
+                list1.add(bean);
+            }
+        }
+        return list1;
+    }
+
+    public List<teacherPHomeworkStudentGradeBean> teacherPHomework(String teacherId,String trainId, String studentID,String stage) throws SQLException {
+        List<teacherPHomeworkStudentGradeBean> list = new ArrayList<>();
+        teacherPHomeworkStudentGradeBean bean;
+        threeRerportOperation tho = new threeRerportOperation("");
+        threeOperation tho1 = new threeOperation("");
+        HashMap map = null;
+        HashMap map1 = null;
+        ResultSet rs1;
+        if(stage.equals("实习阶段")){
+            map = tho1.selectShixi(teacherId, Integer.parseInt(trainId),null,null);
+            rs1 = (ResultSet) map.get("rs");
+            rs1.next();
+            trainId = rs1.getString("shixi_id");
+        }else if(stage.equals("实训阶段")){
+            map = tho1.selectShixun(teacherId, Integer.parseInt(trainId),null,null);
+            rs1 = (ResultSet) map.get("rs");
+            rs1.next();
+            trainId = rs1.getString("shixun_id");
+        }
+        else if(stage.equals("实践阶段")){
+            map = tho1.selectShijian(teacherId, Integer.parseInt(trainId),null,null);
+            rs1 = (ResultSet) map.get("rs");
+            rs1.next();
+            trainId = rs1.getString("shixjian_id");
+        }
+
+        if(stage.equals("实习阶段")){
+            map1 = tho.selectReport(studentID,trainId,"shixi");
+        }else if(stage.equals("实训阶段")){
+            map1 = tho.selectReport(studentID,trainId,"shixun");
+        }
+        else if(stage.equals("实践阶段")){
+            map1 = tho.selectReport(studentID,trainId,"shijian");
+        }
+        if(map1.get("rs") != null) {
+            ResultSet rs = (ResultSet) map1.get("rs");
+            while (rs.next()) {
+                bean = new teacherPHomeworkStudentGradeBean();
+                bean.setStudentId(studentID);
+                bean.setTrainId(trainId);
+                bean.setWeek(rs.getInt("week"));
+                bean.setGrade(rs.getFloat("grade"));
+                bean.setOpinion(rs.getString("opinion"));
+                bean.setAddress(rs.getString("address"));
+                bean.setBeginTime(rs.getDate("begin_time"));
+                bean.setEndTime(rs.getDate("end_time"));
+                list.add(bean);
+            }
+        }
+        return list;
+    }
+
+    public int teacherPHomeworkDo(String trainId, String studentId, String stage, String week, String grade, String opinion) throws SQLException {
+        threeRerportOperation tho = new threeRerportOperation("");
+        int i = -1;
+        if(stage.equals("实习阶段")){
+            i = tho.PHomework(trainId,studentId,"shixi",week,grade,opinion);
+        }else if(stage.equals("实训阶段")){
+            i = tho.PHomework(trainId,studentId,"shixun",week,grade,opinion);
+        }else if(stage.equals("实践阶段")){
+            i = tho.PHomework(trainId,studentId,"shixjian",week,grade,opinion);
+        }
+        return i;
+    }
 }

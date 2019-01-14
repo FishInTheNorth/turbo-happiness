@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -51,7 +50,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_edit.jsp">
+                        <a class="mdc-drawer-link" href="studentEditInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">track_changes</i>
                             个人信息修改
@@ -131,7 +130,7 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
                 <div style="text-align: center;height: 40px;font-size:30px;letter-spacing:8px;line-height:60px">
-                    <span>修改个人信息</span>
+                    <span>修改个人信息${studenteditBean.phone}</span>
                 </div>
                 <form action="studentEditServlet" method="post">
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop" style="margin: 30px 240px 0px 240px;">
@@ -141,7 +140,7 @@
                             <div id="demo-tf-box-wrapper2">
                                 <div id="tf-box-example2" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box2" class="mdc-text-field__input" 
-                                    name="studentPhone" aria-controls="name-validation-message">
+                                    name="studentPhone" aria-controls="name-validation-message" value = "${studenteditBean.phone}">
                                     <label for="tf-box2" class="mdc-text-field__label">手机号</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -156,7 +155,7 @@
                             <div id="demo-tf-box-leading-wrapper">
                                 <div id="tf-box-leading-example" class="mdc-text-field mdc-text-field--box w-100">
                                     <input type="text" id="tf-box-leading" class="mdc-text-field__input" 
-                                    name="qq">
+                                    name="qq" value = "${studenteditBean.qq}">
                                     <label for="tf-box-leading" class="mdc-text-field__label">QQ</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -168,7 +167,7 @@
                             <div id="demo-tf-box-wrapper4">
                                 <div id="tf-box-example4" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box4" class="mdc-text-field__input" 
-                                    name="company" aria-controls="name-validation-message">
+                                    name="company" aria-controls="name-validation-message" value = "${studenteditBean.company}">
                                     <label for="tf-box4" class="mdc-text-field__label">实习单位</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -183,7 +182,7 @@
                             <div id="demo-tf-box-wrapper5">
                                 <div id="tf-box-example5" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box5" class="mdc-text-field__input" 
-                                    name="province" aria-controls="name-validation-message">
+                                    name="province" aria-controls="name-validation-message" value = "${studenteditBean.province}">
                                     <label for="tf-box5" class="mdc-text-field__label">所在省</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -198,7 +197,7 @@
                             <div id="demo-tf-box-wrapper6">
                                 <div id="tf-box-example6" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box6" class="mdc-text-field__input" 
-                                    name="city" aria-controls="name-validation-message">
+                                    name="city" aria-controls="name-validation-message" value = "${studenteditBean.city}">
                                     <label for="tf-box6" class="mdc-text-field__label">所在市</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -213,7 +212,7 @@
                             <div id="demo-tf-box-wrapper7">
                                 <div id="tf-box-example7" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box7" class="mdc-text-field__input" 
-                                    name="contacts" aria-controls="name-validation-message">
+                                    name="contacts" aria-controls="name-validation-message" value = "${studenteditBean.contactName}">
                                     <label for="tf-box7" class="mdc-text-field__label">单位联系人</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>
@@ -228,7 +227,7 @@
                             <div id="demo-tf-box-wrapper8">
                                 <div id="tf-box-example8" class="mdc-text-field mdc-text-field--box w-100">
                                     <input required pattern=".{1,}" type="text" id="tf-box8" class="mdc-text-field__input" 
-                                    name="contactsPhone" aria-controls="name-validation-message">
+                                    name="contactsPhone" aria-controls="name-validation-message" value = "${studenteditBean.contactPhone}">
                                     <label for="tf-box8" class="mdc-text-field__label">联系人电话</label>
                                     <div class="mdc-text-field__bottom-line"></div>
                                 </div>

@@ -33,4 +33,42 @@ public class mapOperation {
         map.put("conn",conn);
         return map;
     }
+    public float selectLatitude(String city) throws SQLException {        //查询地图信息，获取经度
+
+        Connection conn = DBUtil.getConnection();
+        float latitude =0;
+        ResultSet set = null;
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "select latitude from map where city = "+ city +"";
+            set = stmt.executeQuery(sql);
+            System.out.println(sql);
+            System.out.println();
+            if (!set.next()) return 0; //若未查到直接退出
+            else {
+                latitude = set.getFloat("latitude");
+            }
+        }
+        return latitude;
+    }
+
+    public float selectLongitude(String city) throws SQLException {        //查询地图信息，获取纬度
+
+        Connection conn = DBUtil.getConnection();
+        float longitude =0;
+        ResultSet set = null;
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "select longitude from map where city = "+ city +"";
+            set = stmt.executeQuery(sql);
+            System.out.println(sql);
+            System.out.println();
+            if (!set.next()) return 0; //若未查到直接退出
+            else {
+                longitude = set.getFloat("longitude");
+            }
+        }
+        return longitude;
+    }
+
 }

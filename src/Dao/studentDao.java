@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.studentBean;
+import extraBean.studenteditBean;
 import extraBean.studentgradeBean;
 import extraBean.studentsubmitBean;
 import tableOperation.stduentTrainOperation;
@@ -293,5 +294,29 @@ public class studentDao {
 		    System.out.println(address);
 		    return address;
 		}
+		
+		public studenteditBean listedit(String studentId) throws SQLException {//显示修改前信息
+			
+			Connection conn = DBUtil.getConnection();
+			studenteditBean bean = new studenteditBean();
+			String sql = "SELECT * FROM student, student_train  "
+					+ "WHERE student_train.student_id = ? "
+					+ "AND student.student_id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, studentId);
+			pstmt.setString(2, studentId);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean.setPhone(rs.getString("student_phone"));
+				bean.setQq(rs.getString("student_qq"));
+				bean.setCompany(rs.getString("company"));
+				bean.setProvince(rs.getString("province"));
+				bean.setCity(rs.getString("city"));
+				bean.setContactName(rs.getString("contact_name"));
+				bean.setContactPhone(rs.getString("contact_phone"));
+			}
+			return bean;
+		}
+		
 }
 		

@@ -66,8 +66,8 @@ public class threeRerportOperation {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,address);
             pstmt.setInt(2,RerportId);
-            result = pstmt.executeUpdate();
             System.out.println(sql);
+            result = pstmt.executeUpdate();
             System.out.println();
         }
         DBUtil.freeConnection(conn);
@@ -92,5 +92,59 @@ public class threeRerportOperation {
         map.put("rs",set);
         map.put("conn",conn);
         return map;
+    }
+    public HashMap selectReport(String studentId,String trainId,String stage)throws SQLException{
+        //根据学号和实训号和阶段查询信息
+        Connection conn = DBUtil.getConnection();
+        ResultSet set = null;
+        HashMap<String,Object> map =  new HashMap<>();
+        if (conn!=null){
+            Statement stmt = conn.createStatement();
+            String sql = "select * from " + stage +"Report where 1=1";
+            if (studentId != null && !"".equals(studentId)) {
+                sql += " and student_id ='" + studentId + "'";
+            }
+            if (trainId != null && !"".equals(trainId)) {
+                sql += " and " + stage + "_id ='" + trainId + "'";
+            }
+
+            System.out.println(sql);
+            set = stmt.executeQuery(sql);
+            System.out.println();
+        }
+        map.put("rs",set);
+        map.put("conn",conn);
+        return map;
+    }
+    public int PHomework(String trainId, String studentId, String stage, String week, String grade, String opinion) throws SQLException {
+        Connection conn = DBUtil.getConnection();
+        int result = 0;
+
+        if (conn != null) {
+            String sql = "UPDATE " + stage + "Report set ";
+            if (grade != null && !"".equals(grade)) {
+                sql += " grade =" + Integer.parseInt(grade);
+            }
+            if (opinion != null && !"".equals(opinion)) {
+                sql += " ,opinion ='" + opinion + "'";
+            }
+            sql += " where 1 = 1 ";
+            if (studentId != null && !"".equals(studentId)) {
+                sql += " and student_id ='" + studentId + "'";
+            }
+            if (trainId != null && !"".equals(trainId)) {
+                sql += " and " + stage + "_id ='" + trainId + "'";
+            }
+            if (week != null && !"".equals(week)) {
+                sql += "  and week =" + Integer.parseInt(week);
+            }
+
+            Statement stmt = conn.createStatement();
+            System.out.println(sql);
+            result = stmt.executeUpdate(sql);
+            System.out.println();
+        }
+        DBUtil.freeConnection(conn);
+        return result;
     }
 }

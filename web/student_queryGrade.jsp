@@ -53,7 +53,7 @@
                     </div>
                     <!--侧栏选项-->
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-drawer-link" href="student_edit.jsp">
+                        <a class="mdc-drawer-link" href="studentEditInfo">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                                aria-hidden="true">track_changes</i>
                             个人信息修改
