@@ -8,15 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.studentBean;
+import bean.StudentBean;
 import extraBean.studenteditBean;
-import extraBean.studentgradeBean;
-import extraBean.studentsubmitBean;
-import tableOperation.stduentTrainOperation;
-import tableOperation.studentOperation;
+import extraBean.StudentgradeBean;
+import extraBean.StudentsubmitBean;
+import tableOperation.StduentTrainOperation;
+import tableOperation.StudentOperation;
 import util.DBUtil;
 
-public class studentDao {
+public class StudentDao {
 	public int Inquire(String id , String password) throws ClassNotFoundException, SQLException{ //登陆验证
 		
 		Connection conn = DBUtil.getConnection();
@@ -33,8 +33,8 @@ public class studentDao {
 			return i;
 }
 	
-		public studentBean QueryInfo(String id) throws SQLException {//查询信息
-			studentBean studentBean = new studentBean();
+		public StudentBean QueryInfo(String id) throws SQLException {//查询信息
+			StudentBean studentBean = new StudentBean();
 			Connection conn = DBUtil.getConnection();
 			String sql = "select * from student where student_id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -53,14 +53,14 @@ public class studentDao {
 		}
 		
 		public int updatePassword(String studentId, String password) throws SQLException {//更改密码
-			studentOperation studentOperation = new studentOperation();
+			StudentOperation studentOperation = new StudentOperation();
 			int i = 0;
 			i = studentOperation.updatePassword(studentId, password);
 			return i;
 		}
 		
 		public int addDetails(String studentId,int trainId,String province,String city,String company,String contactName,String contactPhone)throws SQLException{//增加实训信息
-			stduentTrainOperation stduentTrainOperation = new stduentTrainOperation();
+			StduentTrainOperation stduentTrainOperation = new StduentTrainOperation();
 			int i = 0;
 			i = stduentTrainOperation.addDetails(studentId, trainId, province, city, company, contactName, contactPhone);
 			return i;
@@ -68,7 +68,7 @@ public class studentDao {
 		}
 
 		public int trainId() throws SQLException{//求最后的实训号
-			stduentTrainOperation stduentTrainOperation = new stduentTrainOperation();
+			StduentTrainOperation stduentTrainOperation = new StduentTrainOperation();
 			int trainId = stduentTrainOperation.selectTrainId();
 			return trainId;
 		}
@@ -90,8 +90,8 @@ public class studentDao {
 		        return result;
 		}
 
-		public  List<studentgradeBean> listEmployee(String studentId) throws SQLException {//查看学生成绩
-			List<studentgradeBean> list = new ArrayList<studentgradeBean>();
+		public  List<StudentgradeBean> listEmployee(String studentId) throws SQLException {//查看学生成绩
+			List<StudentgradeBean> list = new ArrayList<StudentgradeBean>();
 			Connection conn = DBUtil.getConnection();
 			if (conn != null) {
 				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -101,7 +101,7 @@ public class studentDao {
 				ResultSet rs = stmt.executeQuery(sql);
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					studentgradeBean bean = new studentgradeBean();
+					StudentgradeBean bean = new StudentgradeBean();
 					bean.setTrainId(rs.getInt("train_id"));
 					bean.setTeacherName(rs.getString("teacher_name"));
 					bean.setWeek(rs.getString("week"));
@@ -116,7 +116,7 @@ public class studentDao {
 						ResultSet rs1 = stmt.executeQuery(sql1);
 						rs1 = stmt.executeQuery(sql1);
 						while (rs1.next()) {
-							studentgradeBean bean = new studentgradeBean();
+							StudentgradeBean bean = new StudentgradeBean();
 							bean.setTrainId(rs1.getInt("train_id"));
 							bean.setTeacherName(rs1.getString("teacher_name"));
 							bean.setWeek(rs1.getString("week"));
@@ -132,7 +132,7 @@ public class studentDao {
 								ResultSet rs2 = stmt.executeQuery(sql2);
 								rs2 = stmt.executeQuery(sql2);
 								while (rs2.next()) {
-									studentgradeBean bean = new studentgradeBean();
+									StudentgradeBean bean = new StudentgradeBean();
 									bean.setTrainId(rs2.getInt("train_id"));
 									bean.setTeacherName(rs2.getString("teacher_name"));
 									bean.setWeek(rs2.getString("week"));
@@ -162,8 +162,8 @@ public class studentDao {
 			return i;
 		}
 		
-		public  List<studentsubmitBean> listSubmit(String studentId) throws SQLException {//查看报告情况
-			List<studentsubmitBean> list = new ArrayList<studentsubmitBean>();
+		public  List<StudentsubmitBean> listSubmit(String studentId) throws SQLException {//查看报告情况
+			List<StudentsubmitBean> list = new ArrayList<StudentsubmitBean>();
 			Connection conn = DBUtil.getConnection();
 			if (conn != null) {
 				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -175,7 +175,7 @@ public class studentDao {
 				ResultSet rs = stmt.executeQuery(sql);
 				rs = stmt.executeQuery(sql);
 				while (rs.next()) {
-					studentsubmitBean bean = new studentsubmitBean();
+					StudentsubmitBean bean = new StudentsubmitBean();
 					bean.setTrainId(rs.getInt("train_id"));
 					bean.setStage("实习阶段");
 					bean.setBeginTime(rs.getDate("begin_time"));
@@ -191,7 +191,7 @@ public class studentDao {
 				ResultSet rs1 = stmt.executeQuery(sql1);
 				rs1 = stmt.executeQuery(sql1);
 				while (rs1.next()) {
-					studentsubmitBean bean = new studentsubmitBean();
+					StudentsubmitBean bean = new StudentsubmitBean();
 					bean.setTrainId(rs1.getInt("train_id"));
 					bean.setStage("实训阶段");
 					bean.setBeginTime(rs1.getDate("begin_time"));
@@ -208,7 +208,7 @@ public class studentDao {
 				ResultSet rs2 = stmt.executeQuery(sql2);
 				rs2 = stmt.executeQuery(sql2);
 				while (rs2.next()) {
-					studentsubmitBean bean = new studentsubmitBean();
+					StudentsubmitBean bean = new StudentsubmitBean();
 					bean.setTrainId(rs2.getInt("train_id"));
 					bean.setStage("实践阶段");
 					bean.setBeginTime(rs2.getDate("begin_time"));

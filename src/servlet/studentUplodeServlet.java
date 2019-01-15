@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-import Dao.studentDao;
+import Dao.StudentDao;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -52,7 +51,7 @@ public class studentUplodeServlet extends HttpServlet {
          String[] allowTypes ={"pdf"};
 
          PrintWriter out = response.getWriter();
-    	 studentDao studentDao = new studentDao();
+    	 StudentDao studentDao = new StudentDao();
     	 HttpSession user = request.getSession();
 
     	 String userId = (String) user.getAttribute("Id");

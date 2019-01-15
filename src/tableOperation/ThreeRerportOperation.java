@@ -7,11 +7,11 @@ import util.JudgeUtil;
 import java.sql.*;
 import java.util.HashMap;
 
-public class threeRerportOperation {
+public class ThreeRerportOperation {
     private String TABLE_NAME = "";
     private String TYPE = "";
 
-    public threeRerportOperation(String name){
+    public ThreeRerportOperation(String name){
         this.TABLE_NAME = JudgeUtil.judgeTable(name) + "Report";
         this.TYPE = JudgeUtil.judgeTable(name);
     }

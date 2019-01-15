@@ -1,8 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherBean;
-import bean.teacherPtAllStudentBean;
+import Dao.TeacherDao;
+import bean.TeacherPtAllStudentBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -35,8 +33,8 @@ public class teacherStudentEditDoServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         //将获取的数据放入teacherPtAllStudentBean里
-        teacherDao teacherDao = new teacherDao();
-        teacherPtAllStudentBean teacherBean = new teacherPtAllStudentBean();
+        TeacherDao teacherDao = new TeacherDao();
+        TeacherPtAllStudentBean teacherBean = new TeacherPtAllStudentBean();
         teacherBean.setStudentId(studentId);
         teacherBean.setStudentsName(name);
         teacherBean.setTrainId(Integer.parseInt(trainId));

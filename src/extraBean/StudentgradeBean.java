@@ -1,6 +1,6 @@
 package extraBean;
 
-public class studentgradeBean {
+public class StudentgradeBean {
 	private int trainId;//实训编号
 	private String week;//周数
 	private String teacherName;//批阅老师

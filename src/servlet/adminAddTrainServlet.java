@@ -1,13 +1,12 @@
 package servlet;
 
-import Dao.adminDao;
+import Dao.AdminDao;
 import com.jspsmart.upload.File;
 import com.jspsmart.upload.SmartUpload;
 import com.jspsmart.upload.SmartUploadException;
-import extraBean.addTrain;
+import extraBean.AddTrain;
 import util.DateUtil;
 import util.StringUtil;
-import util.uploadExcel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,7 +66,7 @@ public class adminAddTrainServlet extends HttpServlet {
             response.sendRedirect("admin_register_pt.jsp?f=7");
             return;
         }
-        addTrain addTrain = new addTrain();
+        AddTrain addTrain = new AddTrain();
         addTrain.setSchoolYear(schoolYear);
         addTrain.setShixiBeginTime(DateUtil.StrToDate(shixiBeginTime));
         addTrain.setShixiEndTime(DateUtil.StrToDate(shixiEndTime));
@@ -101,7 +100,7 @@ public class adminAddTrainServlet extends HttpServlet {
         addTrain.setShixunTeacherId(lists[1]);
         addTrain.setShijianTeacherId(lists[2]);
         addTrain.setStudntId(lists[3]);
-        adminDao dao = new adminDao();
+        AdminDao dao = new AdminDao();
         try {
             if(dao.adminAddTrain(addTrain)!=1){
                 response.sendRedirect("admin_register_pt.jsp?f=10");

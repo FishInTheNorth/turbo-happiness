@@ -1,6 +1,6 @@
 package bean;
 
-public class mapBean {
+public class MapBean {
     private int mapId;  //地图id
     private String prvince; //省份
     private String city; //城市

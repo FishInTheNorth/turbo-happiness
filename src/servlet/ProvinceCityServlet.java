@@ -1,6 +1,6 @@
 package servlet;
 
-import Dao.mapDao;
+import Dao.MapDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class ProvinceCityServlet extends HttpServlet {
             cityList = "[{\"city\":\"ÄÏ²ý\"},{\"city\":\"¾Å½­\"},{\"city\":\"ÒË´º\"}]";
         } else if ("ºþ±±".equals(prov)) {
             cityList = "[{\"city\":\"Îäºº\"},{\"city\":\"»Æ¸Ô\"},{\"city\":\"¾£ÖÝ\"}]";*/
-        mapDao dao = new mapDao();
+        MapDao dao = new MapDao();
         List<String> list = null;
         try {
             list = dao.map(prov);

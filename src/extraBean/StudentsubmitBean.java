@@ -2,7 +2,7 @@ package extraBean;
 
 import java.util.Date;
 
-public class studentsubmitBean {
+public class StudentsubmitBean {
 	private int  trainId;//实训编号
 	private Date beginTime;//开始时间
 	private Date endTime;//结束时间

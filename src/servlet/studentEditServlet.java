@@ -1,13 +1,12 @@
 package servlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
+import Dao.StudentDao;
 import util.StringUtil;
 
 import java.io.IOException;
@@ -31,7 +30,7 @@ public class studentEditServlet extends HttpServlet {
     	int result = 0 , trainId = 0;
     	
     	PrintWriter out = response.getWriter();
-    	studentDao studentDao = new studentDao();
+    	StudentDao studentDao = new StudentDao();
     	
     	try {
 			result = result + studentDao.updateStudent(userId, phone, qq);

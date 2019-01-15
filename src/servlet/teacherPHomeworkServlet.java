@@ -1,8 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherPHomeworkStudentGradeBean;
-import bean.teacherPtListBean;
+import Dao.TeacherDao;
+import bean.TeacherPHomeworkStudentGradeBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +21,8 @@ public class teacherPHomeworkServlet extends HttpServlet {
         String trainId = StringUtil.toCN(request.getParameter("trainId"));   //获取上一个页面传来的实习编号
         String studentID = StringUtil.toCN(request.getParameter("studentID"));   //获取上一个页面传来的学号
         String stage = request.getParameter("stage");    //获取阶段
-        teacherDao dao = new teacherDao();
-        List<teacherPHomeworkStudentGradeBean> list = new ArrayList<>();
+        TeacherDao dao = new TeacherDao();
+        List<TeacherPHomeworkStudentGradeBean> list = new ArrayList<>();
         try {
             list = dao.teacherPHomework(teacherId,trainId,studentID,stage); //传入list
         } catch (SQLException e) {

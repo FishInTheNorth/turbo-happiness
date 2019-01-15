@@ -5,7 +5,7 @@ import util.DBUtil;
 import java.sql.*;
 import java.util.HashMap;
 
-public class studentOperation {
+public class StudentOperation {
     private final String TABLE_NAME = "student";
 
     public HashMap select(String studentId, String studentName,String password, String major) throws SQLException {

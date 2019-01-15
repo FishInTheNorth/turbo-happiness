@@ -1,7 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherBean;
+import Dao.TeacherDao;
+import bean.TeacherBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -28,8 +28,8 @@ public class teacherEditDoServlet extends HttpServlet {
         String userId = (String) user.getAttribute("id");
         PrintWriter out = response.getWriter();
 
-        teacherDao teacherDao = new teacherDao();
-        teacherBean teacherBean = new teacherBean();
+        TeacherDao teacherDao = new TeacherDao();
+        TeacherBean teacherBean = new TeacherBean();
         teacherBean.setTeacherId(userId);
         teacherBean.setTeacherName(StringUtil.toCN(teacherName));
         teacherBean.setMajor1(StringUtil.toCN(major));

@@ -1,6 +1,6 @@
 package bean;
 
-public class studentBean {
+public class StudentBean {
     private String studentId; //学生id
     private String studentsName; //学生姓名
     private String major; //学生专业

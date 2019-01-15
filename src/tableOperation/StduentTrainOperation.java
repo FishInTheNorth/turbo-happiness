@@ -5,7 +5,7 @@ import util.DBUtil;
 import java.sql.*;
 import java.util.HashMap;
 
-public class stduentTrainOperation {
+public class StduentTrainOperation {
     private final String TABLE_NAME = "student_train";
     public HashMap select(int trainId, String studentId) throws SQLException{ //no use
         //通过实训号和学生确定学生实训信息

@@ -1,7 +1,7 @@
 package servlet;
 
-import Dao.adminDao;
-import bean.adminBean;
+import Dao.AdminDao;
+import bean.AdminBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @WebServlet(name = "adminEditDoServlet")
 public class adminEditDoServlet extends HttpServlet {
@@ -25,13 +23,13 @@ public class adminEditDoServlet extends HttpServlet {
         if (adminQq == null || "".equals(adminQq)){
             adminQq = "";
         }
-        adminBean bean = new adminBean();
+        AdminBean bean = new AdminBean();
         bean.setAdminId((String) request.getSession().getAttribute("id"));
         bean.setAdminName(adminName);
         bean.setAdminPhone(adminPhone);
         bean.setAdminQq(adminQq);
         bean.setSex(Integer.parseInt(sex));
-        adminDao dao = new adminDao();
+        AdminDao dao = new AdminDao();
 
         int result = 0;
         try {

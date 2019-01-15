@@ -1,7 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherPtListBean;
+import Dao.TeacherDao;
+import bean.TeacherPtListBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -29,8 +29,8 @@ public class teacherFindwayServlet extends HttpServlet {
             endTime = Date.valueOf(request.getParameter("endTime"));
         }
         String stage = StringUtil.toCN(request.getParameter("stage"));
-        teacherDao dao = new teacherDao();
-        List<teacherPtListBean> list = new ArrayList<>();
+        TeacherDao dao = new TeacherDao();
+        List<TeacherPtListBean> list = new ArrayList<>();
         try {
             list = dao.teacherPtList(userName,trainNumber,beginTime,endTime,stage); //´«Èëlist
         } catch (SQLException e) {

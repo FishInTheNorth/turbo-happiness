@@ -8,15 +8,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Dao.teacherDao;
+import Dao.TeacherDao;
 import map.MapNavUtil;
 import map.TSP;
-import tableOperation.mapOperation;
+import tableOperation.MapOperation;
 import util.StringUtil;
 
 /**
@@ -40,8 +39,8 @@ public class teacherFindWay extends HttpServlet {
 		
 		String city = StringUtil.toCN(request.getParameter("city"));
 		System.out.println(city);
-		teacherDao teacherDao = new teacherDao();
-		mapOperation mapOperation = new mapOperation();
+		TeacherDao teacherDao = new TeacherDao();
+		MapOperation mapOperation = new MapOperation();
 		MapNavUtil mapResult = null;
 		String trainId = request.getParameter("trainId");
 		String string1 = "";

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
-public class mapOperation {
+public class MapOperation {
     private final String TABLE_NAME = "map";
 
     public HashMap select(String province, String city) throws SQLException {

@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class adminOperation {
+public class AdminOperation {
     private final String TABLE_NAME = "admin";
 
     public HashMap select(String adminId,String password) throws SQLException {

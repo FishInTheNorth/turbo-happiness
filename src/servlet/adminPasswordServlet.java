@@ -1,6 +1,6 @@
 package servlet;
 
-import Dao.adminDao;
+import Dao.AdminDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +27,7 @@ public class adminPasswordServlet extends HttpServlet {
             response.sendRedirect("admin_changePassword.jsp?f=2");
             return;
         }
-        adminDao dao = new adminDao();
+        AdminDao dao = new AdminDao();
         int result = 0;
         try {
             result = dao.adminChangePassword(id,password,password1);

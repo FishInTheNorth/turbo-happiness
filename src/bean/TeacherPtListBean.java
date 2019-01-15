@@ -2,7 +2,7 @@ package bean;
 
 import java.sql.Date;
 
-public class teacherPtListBean {
+public class TeacherPtListBean {
     String trainId;
     String stage;
     Date beginTime;

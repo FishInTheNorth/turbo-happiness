@@ -1,9 +1,8 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.studentBean;
-import bean.teacherPtAllStudentBean;
-import bean.teacherPtListBean;
+import Dao.TeacherDao;
+import bean.StudentBean;
+import bean.TeacherPtAllStudentBean;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -25,9 +24,9 @@ public class teacherMarkingDoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String trainId = StringUtil.toCN(request.getParameter("trainId"));   //获取上一个页面传来的实习编号
         String stage = request.getParameter("stage");
-        teacherDao dao = new teacherDao();
-        List<studentBean> list = new ArrayList<>();
-        List<teacherPtAllStudentBean> list1 = new ArrayList<>();
+        TeacherDao dao = new TeacherDao();
+        List<StudentBean> list = new ArrayList<>();
+        List<TeacherPtAllStudentBean> list1 = new ArrayList<>();
         List<String> list2 = new ArrayList<>();
         try {
             list1 = dao.teacherPtAllStudent(trainId); //传入list

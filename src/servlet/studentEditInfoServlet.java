@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
+import Dao.StudentDao;
 import extraBean.studenteditBean;
 
 /**
@@ -35,7 +34,7 @@ public class studentEditInfoServlet extends HttpServlet {
     	response.setCharacterEncoding("GB2312"); 
     	
     	String userId = (String) user.getAttribute("id");
-    	studentDao studentDao = new studentDao();
+    	StudentDao studentDao = new StudentDao();
     	studenteditBean studenteditbean = new studenteditBean();
     	
     	try {

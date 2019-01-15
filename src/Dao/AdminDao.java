@@ -1,7 +1,7 @@
 package Dao;
 
 import bean.*;
-import extraBean.addTrain;
+import extraBean.AddTrain;
 import tableOperation.*;
 import util.DBUtil;
 
@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class adminDao {
-    public adminBean adminInfo(String id) throws SQLException { //加载个人信息
-        adminBean bean = new adminBean();
-        adminOperation adminOperation = new adminOperation();  //获取管理员表的操作
+public class AdminDao {
+    public AdminBean adminInfo(String id) throws SQLException { //加载个人信息
+        AdminBean bean = new AdminBean();
+        AdminOperation adminOperation = new AdminOperation();  //获取管理员表的操作
         HashMap<String, Object> map = new HashMap<>();
 
         map = adminOperation.select(id, "");  //
@@ -31,15 +31,15 @@ public class adminDao {
         return bean;
     }
 
-    public int adminEdit(adminBean bean) throws SQLException {
+    public int adminEdit(AdminBean bean) throws SQLException {
         int result = 0;
-        adminOperation adm = new adminOperation();
+        AdminOperation adm = new AdminOperation();
         result = adm.update(bean.getAdminId(), bean.getAdminName(), bean.getSex(), bean.getAdminPhone(), bean.getAdminQq());
         return result;
     }
 
     public int adminChangePassword(String id, String password, String password1) throws SQLException {
-        adminOperation adm = new adminOperation();
+        AdminOperation adm = new AdminOperation();
         HashMap<String, Object> map = adm.select(id, password);
         ResultSet rs = (ResultSet) map.get("rs");
         if (!rs.next()) {
@@ -51,10 +51,10 @@ public class adminDao {
         return 1;
     }
 
-    public int adminAddTrain(addTrain addTrain) throws SQLException {
+    public int adminAddTrain(AddTrain addTrain) throws SQLException {
         int result = 0;
         int lastTrainId = 0;
-        trainOperation to = new trainOperation(); //获得实训表的操作
+        TrainOperation to = new TrainOperation(); //获得实训表的操作
         if (to.addTrain(new Date(addTrain.getShixiBeginTime().getTime()), new Date(addTrain.getShijianEndTime().getTime()), addTrain.getSchoolYear()) == 1) {
             //如果成功添加实训
             HashMap<String, Object> map = to.select(0, null, null, "");
@@ -68,7 +68,7 @@ public class adminDao {
 
     private boolean checkTeacher(String teacherId) throws SQLException {
         boolean isTure = false;
-        teacherOperation operation = new teacherOperation();
+        TeacherOperation operation = new TeacherOperation();
         HashMap<String, Object> map = operation.select(teacherId, "", "", "");
         ResultSet rs = (ResultSet) map.get("rs");
         if (rs.next())
@@ -79,7 +79,7 @@ public class adminDao {
 
     private boolean checkStudent(String studentId) throws SQLException {
         boolean isTure = false;
-        studentOperation operation = new studentOperation();
+        StudentOperation operation = new StudentOperation();
         HashMap<String, Object> map = operation.select(studentId, "", "", "");
         ResultSet rs = (ResultSet) map.get("rs");
         if (rs.next())

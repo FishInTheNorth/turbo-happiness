@@ -1,7 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherBean;
+import Dao.TeacherDao;
+import bean.TeacherBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class teacherInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = (String) request.getSession().getAttribute("id"); //从session获取id
-        teacherDao dao = new teacherDao();
-        teacherBean bean;
+        TeacherDao dao = new TeacherDao();
+        TeacherBean bean;
         bean = null;
         try {
             bean = dao.teacherInfo(userName); //获取bean

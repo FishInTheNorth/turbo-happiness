@@ -1,6 +1,6 @@
 package bean;
 
-public class shixiBean {
+public class ShixiBean {
     private int shixiId; //实习id
     private String teacherId; //实习老师id
     private String trainId; //实训id

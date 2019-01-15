@@ -5,15 +5,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
-import extraBean.studentgradeBean;
-import extraBean.studentsubmitBean;
+import Dao.StudentDao;
+import extraBean.StudentsubmitBean;
 
 /**
  * Servlet implementation class studentSubmit
@@ -39,8 +37,8 @@ public class studentSubmitServlet extends HttpServlet {
     	
     	
     	String userId = (String) user.getAttribute("id");
-    	studentDao studentDao = new studentDao();
-    	List<studentsubmitBean> list = null;
+    	StudentDao studentDao = new StudentDao();
+    	List<StudentsubmitBean> list = null;
     	
     	try {
 			list = studentDao.listSubmit(userId);

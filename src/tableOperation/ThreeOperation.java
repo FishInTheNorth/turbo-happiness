@@ -7,10 +7,10 @@ import util.JudgeUtil;
 import java.sql.*;
 import java.util.HashMap;
 
-public class threeOperation {
+public class ThreeOperation {
     private String TABLE_NAME = "";
 
-    public threeOperation(String name) {
+    public ThreeOperation(String name) {
         this.TABLE_NAME = JudgeUtil.judgeTable(name);
     }
 

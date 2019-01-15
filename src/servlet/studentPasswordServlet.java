@@ -1,13 +1,12 @@
 package servlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
+import Dao.StudentDao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,7 +23,7 @@ public class studentPasswordServlet extends HttpServlet {
     	String userId = (String) user.getAttribute("id");
     	PrintWriter out = response.getWriter();
     	
-    	studentDao studentDao = new studentDao();
+    	StudentDao studentDao = new StudentDao();
     	int i = 0,j = 0 ,k = -1;
     	try {
 			i = studentDao.Inquire(userId, oldPassword);

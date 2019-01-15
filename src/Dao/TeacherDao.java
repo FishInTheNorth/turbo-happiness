@@ -2,7 +2,6 @@ package Dao;
 import bean.*;
 import tableOperation.*;
 import util.DBUtil;
-import util.StringUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static util.DBUtil.getConnection;
 
-public class teacherDao {
+public class TeacherDao {
     public int Inquire(String userId, String oldPassword) throws SQLException {
 
         Connection conn;
@@ -49,7 +48,7 @@ public class teacherDao {
         return rs;
     }
 
-    public int Edit(teacherBean teacherBean) throws SQLException {
+    public int Edit(TeacherBean teacherBean) throws SQLException {
         Connection conn;
         conn = getConnection();
         String sql = "update teacher set teacher_name = ?,major = ?,teacher_phone = ?,teacher_qq = ?,sex = ? where teacher_id = ?";
@@ -69,9 +68,9 @@ public class teacherDao {
         return rs;
     }
 
-    public teacherBean teacherInfo(String userName) throws SQLException {
-        teacherBean bean = new teacherBean();
-        teacherOperation teacherOperation = new teacherOperation();  //获取管理员表的操作
+    public TeacherBean teacherInfo(String userName) throws SQLException {
+        TeacherBean bean = new TeacherBean();
+        TeacherOperation teacherOperation = new TeacherOperation();  //获取管理员表的操作
         HashMap<String,Object> map = new HashMap<>();
 
         map = teacherOperation.select(userName,"","","");  //
@@ -90,10 +89,10 @@ public class teacherDao {
 
     }
 
-    public List<teacherPtListBean> teacherPtList(String teacherId, String trainNumber, Date beginTime, Date endTime,String stage) throws SQLException {
-        List<teacherPtListBean> list = new ArrayList<>();
-        teacherPtListBean tea;
-        threeOperation tho1 = new threeOperation("");
+    public List<TeacherPtListBean> teacherPtList(String teacherId, String trainNumber, Date beginTime, Date endTime, String stage) throws SQLException {
+        List<TeacherPtListBean> list = new ArrayList<>();
+        TeacherPtListBean tea;
+        ThreeOperation tho1 = new ThreeOperation("");
         HashMap map;
         int trainId = 0;
         ResultSet rs;
@@ -105,7 +104,7 @@ public class teacherDao {
             map = tho1.selectShixi(teacherId, trainId, beginTime, endTime);
             rs = (ResultSet) map.get("rs");
             while (rs.next()) {
-                tea = new teacherPtListBean();
+                tea = new TeacherPtListBean();
                 tea.setTrainId(rs.getString("train_id"));
                 tea.setStage("实习阶段");
                 tea.setBeginTime(rs.getDate("begin_time"));
@@ -117,7 +116,7 @@ public class teacherDao {
             map = tho1.selectShixun(teacherId, trainId, beginTime, endTime);
             rs = (ResultSet) map.get("rs");
             while (rs.next()) {
-                tea = new teacherPtListBean();
+                tea = new TeacherPtListBean();
                 tea.setTrainId(rs.getString("train_id"));
                 tea.setStage("实训阶段");
                 tea.setBeginTime(rs.getDate("begin_time"));
@@ -129,7 +128,7 @@ public class teacherDao {
             map = tho1.selectShijian(teacherId, trainId, beginTime, endTime);
             rs = (ResultSet) map.get("rs");
             while (rs.next()) {
-                tea = new teacherPtListBean();
+                tea = new TeacherPtListBean();
                 tea.setTrainId(rs.getString("train_id"));
                 tea.setStage("实践阶段");
                 tea.setBeginTime(rs.getDate("begin_time"));
@@ -140,19 +139,19 @@ public class teacherDao {
         return list;
     }
 
-    public List<teacherPtAllStudentBean> teacherPtAllStudent(String trainId) throws SQLException {  //用于教师查询所有学生信息
+    public List<TeacherPtAllStudentBean> teacherPtAllStudent(String trainId) throws SQLException {  //用于教师查询所有学生信息
         if(trainId == null || "".equals(trainId))
             return null;
-        teacherPtAllStudentBean bean;
-        List<teacherPtAllStudentBean> list = new ArrayList<>();
-        stduentTrainOperation st = new stduentTrainOperation();
-        studentOperation st1 = new studentOperation();
+        TeacherPtAllStudentBean bean;
+        List<TeacherPtAllStudentBean> list = new ArrayList<>();
+        StduentTrainOperation st = new StduentTrainOperation();
+        StudentOperation st1 = new StudentOperation();
         HashMap map = st.selectAll(Integer.parseInt(trainId));   //在student_train表中搜索
         ResultSet rs = (ResultSet) map.get("rs");
         HashMap map1;
         ResultSet rs1;
         while(rs.next()){
-            bean = new teacherPtAllStudentBean();
+            bean = new TeacherPtAllStudentBean();
             map1 = st1.select(rs.getString("student_Id"),"","","");  //在student表中搜索
             rs1 = (ResultSet) map1.get("rs");
             if(!rs1.next()) continue;                                       //如果当前搜索集为空则进行下一轮搜索
@@ -174,11 +173,11 @@ public class teacherDao {
         return list;
     }
 
-    public int StudentEdit(teacherPtAllStudentBean bean) throws SQLException {  //用于教师修改学生信息
+    public int StudentEdit(TeacherPtAllStudentBean bean) throws SQLException {  //用于教师修改学生信息
         Connection conn;
         conn = getConnection();
-        studentOperation stu = new studentOperation();
-        stduentTrainOperation stutr = new stduentTrainOperation();
+        StudentOperation stu = new StudentOperation();
+        StduentTrainOperation stutr = new StduentTrainOperation();
 
         int r1 = stu.update(bean.getStudentId(),bean.getStudentsName(),bean.getMajor(),bean.getStudentPhone(),bean.getStudentQq(),bean.getSex());
         int r2 = stutr.addDetails(bean.getStudentId(),bean.getTrainId(),bean.getProvince(),bean.getCity(),bean.getCompany(),bean.getContactName(),bean.getContactPhone());
@@ -188,14 +187,14 @@ public class teacherDao {
     }
 
     public int deleteStudent(String id) throws SQLException {
-        studentOperation stu = new studentOperation();
+        StudentOperation stu = new StudentOperation();
         int i = stu.delete(id);
         return i;
     }
 
     public List<String> findwayMap(String trainId) throws SQLException {  //两个参数：要查的实训编号 和 起始城市
         List<String> list = new ArrayList<>();
-        stduentTrainOperation sto = new stduentTrainOperation();
+        StduentTrainOperation sto = new StduentTrainOperation();
         HashMap map = sto.selectAll(Integer.parseInt(trainId));
         ResultSet rs = (ResultSet) map.get("rs");
         while(rs.next()){
@@ -204,16 +203,16 @@ public class teacherDao {
         return list;
     }
 
-    public List<studentBean> selectAllTrainStudents(List<String> list) throws SQLException {
-        List<studentBean> list1 = new ArrayList<>();
-        studentOperation stu = new studentOperation();
-        studentBean bean = new studentBean();
+    public List<StudentBean> selectAllTrainStudents(List<String> list) throws SQLException {
+        List<StudentBean> list1 = new ArrayList<>();
+        StudentOperation stu = new StudentOperation();
+        StudentBean bean = new StudentBean();
         ResultSet rs;
         for(int i = 0;i < list.size();i ++) {  //遍历所有学生学号
             HashMap map = stu.select(list.get(i),"","","");
             rs = (ResultSet) map.get("rs");
             while(rs.next()) {  //遍历所有根据学生学号搜索到的学生信息
-                bean = new studentBean();
+                bean = new StudentBean();
                 bean.setStudentId(rs.getString("student_id"));
                 bean.setStudentsName(rs.getString("student_name"));
                 bean.setMajor(rs.getString("major"));
@@ -223,11 +222,11 @@ public class teacherDao {
         return list1;
     }
 
-    public List<teacherPHomeworkStudentGradeBean> teacherPHomework(String teacherId,String trainId, String studentID,String stage) throws SQLException {
-        List<teacherPHomeworkStudentGradeBean> list = new ArrayList<>();
-        teacherPHomeworkStudentGradeBean bean;
-        threeRerportOperation tho = new threeRerportOperation("");
-        threeOperation tho1 = new threeOperation("");
+    public List<TeacherPHomeworkStudentGradeBean> teacherPHomework(String teacherId, String trainId, String studentID, String stage) throws SQLException {
+        List<TeacherPHomeworkStudentGradeBean> list = new ArrayList<>();
+        TeacherPHomeworkStudentGradeBean bean;
+        ThreeRerportOperation tho = new ThreeRerportOperation("");
+        ThreeOperation tho1 = new ThreeOperation("");
         HashMap map = null;
         HashMap map1 = null;
         ResultSet rs1;
@@ -260,7 +259,7 @@ public class teacherDao {
         if(map1.get("rs") != null) {
             ResultSet rs = (ResultSet) map1.get("rs");
             while (rs.next()) {
-                bean = new teacherPHomeworkStudentGradeBean();
+                bean = new TeacherPHomeworkStudentGradeBean();
                 bean.setStudentId(studentID);
                 bean.setTrainId(trainId);
                 bean.setWeek(rs.getInt("week"));
@@ -276,7 +275,7 @@ public class teacherDao {
     }
 
     public int teacherPHomeworkDo(String trainId, String studentId, String stage, String week, String grade, String opinion) throws SQLException {
-        threeRerportOperation tho = new threeRerportOperation("");
+        ThreeRerportOperation tho = new ThreeRerportOperation("");
         int i = -1;
         if(stage.equals("实习阶段")){
             i = tho.PHomework(trainId,studentId,"shixi",week,grade,opinion);

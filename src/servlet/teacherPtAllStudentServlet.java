@@ -1,9 +1,7 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.studentTrainBean;
-import bean.teacherBean;
-import bean.teacherPtAllStudentBean;
+import Dao.TeacherDao;
+import bean.TeacherPtAllStudentBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +17,8 @@ import java.util.List;
 public class teacherPtAllStudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String trainId = request.getParameter("trainId");
-        teacherDao dao = new teacherDao();
-        List<teacherPtAllStudentBean> list = new ArrayList<>();
+        TeacherDao dao = new TeacherDao();
+        List<TeacherPtAllStudentBean> list = new ArrayList<>();
         try {
             list = dao.teacherPtAllStudent(trainId); //ªÒ»°list
         } catch (SQLException e) {

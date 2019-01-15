@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class shixunReportBean {
+public class ShixunReportBean {
     private int shixunReportId; //实训报告id
     private String studentId; //学生id
     private String shixunId; //实训id

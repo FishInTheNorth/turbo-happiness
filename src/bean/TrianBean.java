@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class trianBean {
+public class TrianBean {
     private int trainId; //实训id
     private Date beginTime; //实训开始时间
     private Date endTime; //实训结束时间

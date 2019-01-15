@@ -1,21 +1,16 @@
 package servlet;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
+import Dao.StudentDao;
 
 /**
  * Servlet implementation class studentDownlode
@@ -45,7 +40,7 @@ public class studentDownlodeServlet extends HttpServlet {
     	String table = "";
     	String address = "";
     	PrintWriter out = response.getWriter();
-		studentDao studentDao = new studentDao();
+		StudentDao studentDao = new StudentDao();
 		
 		if (stage.equals("")||week.equals("")) {
 			out.println("<script type='text/javascript'>");

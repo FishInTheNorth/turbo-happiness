@@ -1,6 +1,6 @@
 package servlet;
 
-import Dao.loginDao;
+import Dao.LoginDao;
 import util.JudgeUtil;
 import util.StringUtil;
 
@@ -32,7 +32,7 @@ public class loginServlet extends HttpServlet {
             return;
         }
         String type1 = JudgeUtil.judgeUser(type);  //类型对应转换
-        loginDao login = new loginDao();
+        LoginDao login = new LoginDao();
         HashMap<String,Object> map = null; //获取检查用户密码返回HashMap对象
         try {
             map = login.check(userName,password,type1);

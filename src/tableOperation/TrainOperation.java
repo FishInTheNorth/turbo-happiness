@@ -5,7 +5,7 @@ import util.DBUtil;
 import java.sql.*;
 import java.util.HashMap;
 
-public class trainOperation {
+public class TrainOperation {
     private final String TABLE_NAME = "train";
 
     public HashMap select(int trainId, Date beginTime, Date endTime, String schoolYear) throws SQLException {

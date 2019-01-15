@@ -5,14 +5,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Dao.studentDao;
-import extraBean.studentgradeBean;
+import Dao.StudentDao;
+import extraBean.StudentgradeBean;
 
 /**
  * Servlet implementation class studentGrade
@@ -37,8 +36,8 @@ public class studentGradeServlet extends HttpServlet {
     	
     	String userId = (String) user.getAttribute("id");
     	float allgrade = 0;
-    	studentDao studentDao = new studentDao();
-    	List<studentgradeBean> list = null;
+    	StudentDao studentDao = new StudentDao();
+    	List<StudentgradeBean> list = null;
     	try {
 			list = studentDao.listEmployee(userId);
 		} catch (SQLException e) {

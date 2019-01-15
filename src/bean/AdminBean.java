@@ -1,6 +1,6 @@
 package bean;
 
-public class adminBean {
+public class AdminBean {
     private String adminId;  //管理员id
     private String password; //管理员密码
     private String adminName; //管理员姓名

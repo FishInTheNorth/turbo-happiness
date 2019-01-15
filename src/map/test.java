@@ -24,7 +24,7 @@ public class test {
 //写一个dao求所带学生的城市，返回一个list
 	
 	 int cityNum = 0;
-	 //list = teacherDao.listcity();
+	 //list = TeacherDao.listcity();
 	 list.add(0, city);//将老师城市放在第一位
 	 list.add("广州");
 	 list.add("广州");

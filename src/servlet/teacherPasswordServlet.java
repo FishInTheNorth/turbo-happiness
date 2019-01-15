@@ -1,7 +1,6 @@
 package servlet;
 
-import Dao.teacherDao;
-import Dao.teacherDao;
+import Dao.TeacherDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +24,7 @@ public class teacherPasswordServlet extends HttpServlet {
         String userId = (String) user.getAttribute("id");
         PrintWriter out = response.getWriter();
 
-        teacherDao teacherDao = new teacherDao();
+        TeacherDao teacherDao = new TeacherDao();
         int i = 0,j = 0 ,k = -1;
         try {
             i = teacherDao.Inquire(userId, oldPassword);

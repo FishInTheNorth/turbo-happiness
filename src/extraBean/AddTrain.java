@@ -3,7 +3,7 @@ package extraBean;
 import java.util.Date;
 import java.util.List;
 
-public class addTrain {
+public class AddTrain {
     private String schoolYear;
     private Date shixiBeginTime;
     private Date shixiEndTime;

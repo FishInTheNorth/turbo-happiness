@@ -1,7 +1,6 @@
 package servlet;
 
-import Dao.teacherDao;
-import tableOperation.studentOperation;
+import Dao.TeacherDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class teacherDelStudentServlet extends HttpServlet {
         response.setCharacterEncoding("GB2312");
         String id = request.getParameter("id");
         PrintWriter out = response.getWriter();
-        teacherDao dao = new teacherDao();
+        TeacherDao dao = new TeacherDao();
         int i = -1;
         try {
             i = dao.deleteStudent(id);

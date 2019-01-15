@@ -1,7 +1,6 @@
 package servlet;
 
-import Dao.teacherDao;
-import bean.teacherPHomeworkStudentGradeBean;
+import Dao.TeacherDao;
 import util.StringUtil;
 
 import javax.servlet.ServletException;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "teacherPHomeworkDoServlet")
 public class teacherPHomeworkDoServlet extends HttpServlet {
@@ -30,7 +27,7 @@ public class teacherPHomeworkDoServlet extends HttpServlet {
         String opinion = StringUtil.toCN(request.getParameter("opinion"));    //获取评价
         PrintWriter out = response.getWriter();
 
-        teacherDao dao = new teacherDao();
+        TeacherDao dao = new TeacherDao();
         int i = -1;
         try {
             i = dao.teacherPHomeworkDo(trainId,studentId,stage,week,grade,opinion); //执行修改

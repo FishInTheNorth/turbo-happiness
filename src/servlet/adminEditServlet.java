@@ -1,10 +1,9 @@
 package servlet;
 
-import Dao.adminDao;
-import bean.adminBean;
+import Dao.AdminDao;
+import bean.AdminBean;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +13,8 @@ import java.sql.SQLException;
 public class adminEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = (String) request.getSession().getAttribute("id"); //从session获取id
-        adminDao dao = new adminDao();
-        adminBean bean = null;
+        AdminDao dao = new AdminDao();
+        AdminBean bean = null;
         try {
             bean = dao.adminInfo(userName); //获取bean
         } catch (SQLException e) {
